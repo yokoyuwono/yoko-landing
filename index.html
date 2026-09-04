@@ -1,0 +1,933 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yoko Dev — Desain Web & Aplikasi Konversi Tinggi</title>
+<meta name="description" content="Yoko Dev — desainer produk & pengembang web. Landing page dan aplikasi yang dirancang untuk konversi: lebih banyak leads, lebih banyak penjualan.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0B0B0D;
+    --bg-2:#101014;
+    --surface:#141419;
+    --surface-2:#1A1A20;
+    --line:#222228;
+    --line-2:#2C2C34;
+    --text:#ECECE8;
+    --muted:#8F8F98;
+    --dim:#5E5E68;
+    --accent:#2DD4BF;
+    --accent-ink:#04110F;
+    --radius-card:20px;
+    --radius-btn:10px;
+    --font-display:'Space Grotesk',sans-serif;
+    --font-body:'Inter',sans-serif;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:var(--font-body);
+    font-size:16px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  ::selection{background:var(--accent);color:var(--accent-ink)}
+  img,svg{display:block}
+  a{color:inherit;text-decoration:none}
+  .container{max-width:1200px;margin:0 auto;padding:0 24px}
+  .eyebrow{
+    font-size:12px;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--accent);font-weight:600;
+  }
+  .mono{font-family:var(--font-display)}
+
+  /* ---------- NAV ---------- */
+  .nav{
+    position:fixed;top:0;left:0;right:0;z-index:100;
+    background:rgba(11,11,13,.82);
+    backdrop-filter:blur(14px);
+    -webkit-backdrop-filter:blur(14px);
+    border-bottom:1px solid transparent;
+    transition:transform .35s ease, border-color .3s ease, background .3s ease;
+  }
+  .nav.scrolled{border-bottom-color:var(--line)}
+  .nav.hidden{transform:translateY(-100%)}
+  .nav-inner{
+    max-width:1200px;margin:0 auto;padding:0 24px;
+    height:68px;display:flex;align-items:center;justify-content:space-between;gap:24px;
+  }
+  .nav-logo{
+    font-family:var(--font-display);font-weight:700;font-size:19px;letter-spacing:-.02em;
+    display:flex;align-items:center;gap:10px;
+  }
+  .nav-logo .mark{
+    width:26px;height:26px;border-radius:8px;background:var(--accent);
+    display:grid;place-items:center;color:var(--accent-ink);
+    font-size:14px;font-weight:700;
+  }
+  .nav-links{display:flex;align-items:center;gap:6px}
+  .nav-links a{
+    font-size:14px;color:var(--muted);padding:8px 13px;border-radius:8px;
+    transition:color .2s ease, background .2s ease;
+  }
+  .nav-links a:hover{color:var(--text);background:var(--surface)}
+  .nav-cta{
+    display:inline-flex;align-items:center;gap:10px;
+    background:var(--text);color:#0B0B0D;
+    font-weight:600;font-size:14px;font-family:var(--font-body);
+    padding:11px 18px;border-radius:var(--radius-btn);
+    transition:background .2s ease, transform .2s ease;
+  }
+  .nav-cta:hover{background:var(--accent)}
+  .pulse-dot{
+    width:8px;height:8px;border-radius:50%;background:#17B26A;position:relative;flex:none;
+  }
+  .pulse-dot::after{
+    content:"";position:absolute;inset:-4px;border-radius:50%;
+    border:1px solid #17B26A;animation:pulse 2s ease-out infinite;
+  }
+  @keyframes pulse{0%{transform:scale(.5);opacity:1}100%{transform:scale(1.4);opacity:0}}
+  .nav-burger{display:none;background:none;border:0;cursor:pointer;color:var(--text);padding:8px}
+  .mobile-menu{
+    display:none;flex-direction:column;gap:4px;padding:12px 24px 20px;
+    background:var(--bg-2);border-bottom:1px solid var(--line);
+  }
+  .mobile-menu.open{display:flex}
+  .mobile-menu a{padding:12px 4px;color:var(--muted);font-size:16px;border-bottom:1px solid var(--line)}
+  .mobile-menu a:last-of-type{border-bottom:0}
+
+  /* ---------- HERO ---------- */
+  .hero{position:relative;padding:170px 0 90px;overflow:hidden}
+  .hero-grid-bg{
+    position:absolute;inset:0;pointer-events:none;opacity:.5;
+    background-image:linear-gradient(to right,var(--line) 1px,transparent 1px),
+                     linear-gradient(to bottom,var(--line) 1px,transparent 1px);
+    background-size:56px 56px;
+    mask-image:radial-gradient(ellipse 90% 70% at 50% 0%,#000 20%,transparent 75%);
+    -webkit-mask-image:radial-gradient(ellipse 90% 70% at 50% 0%,#000 20%,transparent 75%);
+  }
+  .hero-glow{
+    position:absolute;top:-220px;left:50%;transform:translateX(-50%);
+    width:900px;height:520px;pointer-events:none;
+    background:radial-gradient(closest-side,rgba(45,212,191,.14),transparent);
+  }
+  .hero-inner{position:relative;display:grid;grid-template-columns:1.15fr .85fr;gap:72px;align-items:center}
+  .hero-badge{
+    display:inline-flex;align-items:center;gap:10px;
+    border:1px solid var(--line-2);background:var(--surface);
+    padding:8px 14px;border-radius:999px;font-size:12.5px;color:var(--muted);
+    letter-spacing:.03em;margin-bottom:28px;
+  }
+  .hero-badge b{color:var(--text);font-weight:600}
+  .hero h1{
+    font-family:var(--font-display);
+    font-size:clamp(42px,5.4vw,68px);
+    line-height:1.02;
+    font-weight:600;
+    letter-spacing:-.03em;
+    margin-bottom:26px;
+  }
+  .hero h1 .accent{color:var(--accent)}
+  .hero-sub{
+    font-size:18px;color:var(--muted);max-width:520px;margin-bottom:38px;line-height:1.65;
+  }
+  .hero-actions{display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin-bottom:44px}
+  .btn-primary{
+    display:inline-flex;align-items:center;gap:10px;
+    background:var(--accent);color:var(--accent-ink);
+    font-weight:600;font-size:15.5px;
+    padding:15px 24px;border-radius:var(--radius-btn);
+    transition:transform .2s ease, box-shadow .25s ease;
+  }
+  .btn-primary:hover{transform:translateY(-2px);box-shadow:0 10px 30px -8px rgba(45,212,191,.45)}
+  .btn-secondary{
+    display:inline-flex;align-items:center;gap:10px;
+    border:1px solid var(--line-2);color:var(--text);
+    font-weight:500;font-size:15.5px;
+    padding:15px 24px;border-radius:var(--radius-btn);
+    transition:border-color .2s ease, background .2s ease;
+  }
+  .btn-secondary:hover{border-color:var(--accent);background:var(--surface)}
+  .hero-features{display:flex;gap:26px;flex-wrap:wrap}
+  .hero-feature{display:flex;align-items:center;gap:9px;font-size:14px;color:var(--muted)}
+  .check{
+    width:20px;height:20px;border-radius:50%;background:rgba(45,212,191,.14);
+    display:grid;place-items:center;flex:none;
+  }
+  .check svg{width:10px;height:10px;stroke:var(--accent);stroke-width:3;fill:none}
+
+  /* Hero visual */
+  .hero-visual{position:relative}
+  .browser{
+    border:1px solid var(--line-2);border-radius:14px;background:var(--surface);
+    overflow:hidden;box-shadow:0 40px 90px -30px rgba(0,0,0,.8);
+  }
+  .browser-bar{
+    display:flex;align-items:center;gap:6px;padding:12px 16px;
+    border-bottom:1px solid var(--line);background:var(--bg-2);
+  }
+  .browser-bar span{width:10px;height:10px;border-radius:50%}
+  .browser-bar span:nth-child(1){background:#FF5F57}
+  .browser-bar span:nth-child(2){background:#FEBC2E}
+  .browser-bar span:nth-child(3){background:#28C840}
+  .browser-url{
+    margin-left:12px;flex:1;background:var(--surface-2);
+    border:1px solid var(--line);border-radius:6px;
+    font-size:11px;color:var(--dim);padding:4px 10px;
+  }
+  .mini-landing{padding:26px 28px 30px}
+  .mini-badge{
+    display:inline-block;font-size:10px;letter-spacing:.12em;text-transform:uppercase;
+    color:var(--accent);border:1px solid rgba(45,212,191,.3);
+    padding:4px 9px;border-radius:999px;margin-bottom:16px;
+  }
+  .mini-landing h3{
+    font-family:var(--font-display);font-size:24px;line-height:1.12;letter-spacing:-.02em;
+    margin-bottom:14px;font-weight:600;
+  }
+  .mini-landing p{font-size:12.5px;color:var(--muted);margin-bottom:20px;line-height:1.55}
+  .mini-cta{
+    display:inline-block;background:var(--accent);color:var(--accent-ink);
+    font-size:12px;font-weight:600;padding:9px 15px;border-radius:7px;margin-bottom:22px;
+  }
+  .mini-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+  .mini-stat{
+    background:var(--bg-2);border:1px solid var(--line);
+    border-radius:10px;padding:12px;
+  }
+  .mini-stat b{
+    display:block;font-family:var(--font-display);font-size:17px;color:var(--accent);
+    letter-spacing:-.01em;margin-bottom:2px;
+  }
+  .mini-stat span{font-size:9.5px;color:var(--dim);text-transform:uppercase;letter-spacing:.08em}
+  .float-card{
+    position:absolute;left:-34px;bottom:-26px;
+    background:var(--surface-2);border:1px solid var(--line-2);border-radius:14px;
+    padding:16px 18px;display:flex;align-items:center;gap:12px;
+    box-shadow:0 24px 50px -20px rgba(0,0,0,.7);
+    animation:float 5s ease-in-out infinite;
+  }
+  .float-card .up{
+    width:36px;height:36px;border-radius:10px;background:rgba(45,212,191,.15);
+    display:grid;place-items:center;color:var(--accent);
+  }
+  .float-card b{font-family:var(--font-display);font-size:19px;display:block;line-height:1.1;letter-spacing:-.01em}
+  .float-card span{font-size:11.5px;color:var(--muted)}
+  @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-9px)}}
+
+  /* ---------- MARQUEE ---------- */
+  .marquee-wrap{
+    border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+    background:var(--bg-2);overflow:hidden;padding:22px 0;
+    -webkit-mask-image:linear-gradient(to right,transparent,#000 12%,#000 88%,transparent);
+    mask-image:linear-gradient(to right,transparent,#000 12%,#000 88%,transparent);
+  }
+  .marquee{display:flex;gap:0;width:max-content;animation:scroll 30s linear infinite}
+  .marquee:hover{animation-play-state:paused}
+  .marquee span{
+    font-family:var(--font-display);font-size:15px;color:var(--dim);
+    white-space:nowrap;padding:0 28px;letter-spacing:.04em;font-weight:500;
+  }
+  .marquee span i{color:var(--accent);font-style:normal;opacity:.7}
+  @keyframes scroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+
+  /* ---------- SECTION COMMON ---------- */
+  section{padding:110px 0}
+  .sec-head{max-width:760px;margin-bottom:64px}
+  .sec-head.center{margin-left:auto;margin-right:auto;text-align:center}
+  .sec-head h2{
+    font-family:var(--font-display);
+    font-size:clamp(30px,3.6vw,46px);
+    line-height:1.08;letter-spacing:-.025em;font-weight:600;
+    margin-top:16px;
+  }
+  .sec-head p{color:var(--muted);font-size:17px;margin-top:16px;max-width:620px}
+  .sec-head.center p{margin-left:auto;margin-right:auto}
+
+  /* ---------- RESULTS BAND ---------- */
+  .results{border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:0}
+  .results-grid{display:grid;grid-template-columns:repeat(4,1fr)}
+  .result{
+    padding:44px 30px;border-right:1px solid var(--line);text-align:left;
+  }
+  .result:last-child{border-right:0}
+  .result .val{
+    font-family:var(--font-display);font-size:44px;font-weight:600;
+    letter-spacing:-.03em;color:var(--text);line-height:1;margin-bottom:10px;
+  }
+  .result .val em{font-style:normal;color:var(--accent)}
+  .result .lbl{font-size:13px;color:var(--muted)}
+  .result .ctx{font-size:12px;color:var(--dim);margin-top:4px}
+
+  /* ---------- PROBLEM / COMPARE ---------- */
+  .compare{border-bottom:1px solid var(--line)}
+  .compare-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-top:12px}
+  .compare-card{
+    border:1px solid var(--line-2);border-radius:var(--radius-card);
+    padding:40px 36px;background:var(--surface);
+  }
+  .compare-card.them{background:transparent;border-color:var(--line)}
+  .compare-card h4{
+    font-family:var(--font-display);font-size:15px;letter-spacing:.01em;
+    margin-bottom:26px;display:flex;align-items:center;justify-content:space-between;
+  }
+  .compare-card h4 .tag{
+    font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;
+    padding:4px 10px;border-radius:999px;font-family:var(--font-body);
+  }
+  .compare-card.them .tag{color:var(--dim);border:1px solid var(--line-2)}
+  .compare-card.us{border-color:rgba(45,212,191,.45);position:relative}
+  .compare-card.us .tag{background:rgba(45,212,191,.14);color:var(--accent)}
+  .compare-row{
+    display:flex;justify-content:space-between;align-items:baseline;
+    padding:18px 0;border-bottom:1px solid var(--line);
+  }
+  .compare-row:last-child{border-bottom:0}
+  .compare-row .k{font-size:15px;color:var(--text)}
+  .compare-card.them .compare-row .k{color:var(--muted)}
+  .compare-row .v{font-size:14px;color:var(--dim);text-align:right}
+  .compare-card.us .compare-row .v{color:var(--accent);font-weight:600}
+  .compare-note{
+    margin-top:30px;padding:22px 26px;border-radius:14px;
+    background:var(--surface);border:1px solid var(--line);
+    font-size:15px;color:var(--muted);line-height:1.7;
+  }
+  .compare-note b{color:var(--text)}
+
+  /* ---------- SERVICES ---------- */
+  .services{border-bottom:1px solid var(--line)}
+  .svc-list{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+  .svc{
+    border:1px solid var(--line);border-radius:var(--radius-card);
+    padding:34px 32px;background:var(--surface);
+    transition:border-color .25s ease, transform .25s ease, background .25s ease;
+    position:relative;overflow:hidden;
+  }
+  .svc:hover{border-color:var(--line-2);background:var(--surface-2);transform:translateY(-3px)}
+  .svc .num{
+    font-family:var(--font-display);font-size:13px;color:var(--accent);
+    letter-spacing:.1em;margin-bottom:18px;display:block;
+  }
+  .svc h3{font-family:var(--font-display);font-size:21px;font-weight:600;letter-spacing:-.01em;margin-bottom:10px}
+  .svc p{font-size:14.5px;color:var(--muted);line-height:1.65;margin-bottom:18px}
+  .svc .tags{display:flex;flex-wrap:wrap;gap:8px}
+  .svc .tags span{
+    font-size:11.5px;color:var(--muted);border:1px solid var(--line-2);
+    padding:4px 10px;border-radius:999px;background:var(--bg);
+  }
+
+  /* ---------- WORK ---------- */
+  .work{border-bottom:1px solid var(--line)}
+  .work-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+  .case{
+    border:1px solid var(--line);border-radius:var(--radius-card);
+    background:var(--surface);overflow:hidden;
+    transition:border-color .25s ease, transform .25s ease;
+    display:flex;flex-direction:column;
+  }
+  .case:hover{border-color:var(--line-2);transform:translateY(-4px)}
+  .case-top{height:190px;position:relative;display:grid;place-items:center;overflow:hidden;border-bottom:1px solid var(--line)}
+  .case-top .glyph{font-family:var(--font-display);font-size:64px;font-weight:700;letter-spacing:-.04em;opacity:.9}
+  .case-top::after{content:"";position:absolute;inset:0;background:radial-gradient(circle at 30% 20%,rgba(45,212,191,.16),transparent 55%)}
+  .case-top.c1{background:#0E1418}.case-top.c1 .glyph{color:rgba(45,212,191,.85)}
+  .case-top.c2{background:#121114}.case-top.c2 .glyph{color:rgba(236,236,232,.8)}
+  .case-top.c3{background:#0F1512}.case-top.c3 .glyph{color:rgba(45,212,191,.75)}
+  .case-body{padding:26px 26px 28px;display:flex;flex-direction:column;flex:1}
+  .case-meta{display:flex;align-items:center;gap:10px;font-size:11.5px;color:var(--dim);margin-bottom:14px;letter-spacing:.02em}
+  .case-meta .dot{width:3px;height:3px;border-radius:50%;background:var(--dim)}
+  .case-body h3{font-family:var(--font-display);font-size:21px;font-weight:600;letter-spacing:-.01em;margin-bottom:8px}
+  .case-body p{font-size:14px;color:var(--muted);line-height:1.6;margin-bottom:20px;flex:1}
+  .case-metric{
+    display:flex;align-items:baseline;gap:8px;
+    border-top:1px solid var(--line);padding-top:16px;
+  }
+  .case-metric b{font-family:var(--font-display);font-size:26px;color:var(--accent);letter-spacing:-.02em}
+  .case-metric span{font-size:12.5px;color:var(--dim)}
+  .work-more{text-align:center;margin-top:44px}
+
+  /* ---------- TESTIMONIALS ---------- */
+  .testimonials{border-bottom:1px solid var(--line);background:var(--bg-2)}
+  .tst-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+  .tst{
+    border:1px solid var(--line);border-radius:var(--radius-card);
+    background:var(--surface);padding:32px 28px;
+    display:flex;flex-direction:column;
+    transition:border-color .25s ease;
+  }
+  .tst:hover{border-color:var(--line-2)}
+  .tst .stars{color:var(--accent);letter-spacing:3px;font-size:14px;margin-bottom:18px}
+  .tst p{font-size:15px;color:var(--text);line-height:1.7;margin-bottom:26px;flex:1}
+  .tst .who{display:flex;align-items:center;gap:12px}
+  .tst .avatar{
+    width:42px;height:42px;border-radius:50%;flex:none;
+    display:grid;place-items:center;
+    font-family:var(--font-display);font-weight:600;font-size:15px;
+    color:var(--accent-ink);background:var(--accent);
+  }
+  .tst .avatar.alt{background:var(--surface-2);color:var(--accent);border:1px solid var(--line-2)}
+  .tst .who b{display:block;font-size:14.5px;font-weight:600}
+  .tst .who span{font-size:12.5px;color:var(--muted)}
+
+  /* ---------- PRICING ---------- */
+  .pricing{border-bottom:1px solid var(--line)}
+  .price-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;align-items:stretch}
+  .plan{
+    border:1px solid var(--line);border-radius:var(--radius-card);
+    background:var(--surface);padding:38px 32px;
+    display:flex;flex-direction:column;position:relative;
+    transition:border-color .25s ease, transform .25s ease;
+  }
+  .plan:hover{transform:translateY(-4px)}
+  .plan.hot{border-color:rgba(45,212,191,.55);background:linear-gradient(180deg,rgba(45,212,191,.06),var(--surface) 40%)}
+  .plan .flag{
+    position:absolute;top:-13px;left:50%;transform:translateX(-50%);
+    background:var(--accent);color:var(--accent-ink);
+    font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;
+    padding:5px 14px;border-radius:999px;white-space:nowrap;
+  }
+  .plan .kind{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);font-weight:600;margin-bottom:14px}
+  .plan h3{font-family:var(--font-display);font-size:25px;font-weight:600;letter-spacing:-.02em;margin-bottom:6px}
+  .plan .dur{font-size:13.5px;color:var(--muted);margin-bottom:26px}
+  .plan ul{list-style:none;margin-bottom:32px;display:flex;flex-direction:column;gap:13px;flex:1}
+  .plan ul li{
+    display:flex;gap:11px;font-size:14.5px;color:var(--text);line-height:1.45;
+  }
+  .plan ul li::before{
+    content:"";flex:none;width:16px;height:16px;margin-top:2px;
+    border-radius:50%;background:rgba(45,212,191,.14);
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10'%3E%3Cpath d='M2 5.2 4.2 7.4 8 2.8' fill='none' stroke='%232DD4BF' stroke-width='1.6' stroke-linecap='round'/%3E%3C/svg%3E");
+    background-repeat:no-repeat;background-position:center;background-size:9px;
+  }
+  .plan .btn{
+    display:block;text-align:center;
+    border:1px solid var(--line-2);border-radius:var(--radius-btn);
+    padding:14px 18px;font-weight:600;font-size:15px;
+    transition:all .2s ease;
+  }
+  .plan.hot .btn{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
+  .plan.hot .btn:hover{box-shadow:0 10px 30px -10px rgba(45,212,191,.5)}
+  .plan .btn:hover{border-color:var(--accent);color:var(--accent)}
+
+  /* ---------- FAQ ---------- */
+  .faq-section{border-bottom:1px solid var(--line)}
+  .faq-wrap{max-width:780px}
+  .faq{border:1px solid var(--line);border-radius:14px;background:var(--surface);margin-bottom:14px;overflow:hidden}
+  .faq summary{
+    list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:20px;
+    padding:24px 26px;font-weight:600;font-size:16.5px;
+  }
+  .faq summary::-webkit-details-marker{display:none}
+  .faq summary .chev{flex:none;transition:transform .3s ease;color:var(--accent)}
+  .faq[open] summary .chev{transform:rotate(45deg)}
+  .faq .ans{padding:0 26px 24px;color:var(--muted);font-size:15px;line-height:1.7}
+  .faq .ans b{color:var(--text)}
+
+  /* ---------- FINAL CTA ---------- */
+  .final{position:relative;overflow:hidden;text-align:center}
+  .final-glow{position:absolute;bottom:-260px;left:50%;transform:translateX(-50%);width:1000px;height:560px;pointer-events:none;background:radial-gradient(closest-side,rgba(45,212,191,.16),transparent)}
+  .final .container{position:relative}
+  .final h2{
+    font-family:var(--font-display);font-size:clamp(36px,5vw,62px);
+    font-weight:600;letter-spacing:-.03em;line-height:1.05;
+    max-width:760px;margin:0 auto 22px;
+  }
+  .final p{color:var(--muted);font-size:18px;max-width:520px;margin:0 auto 40px}
+  .final .actions{display:flex;justify-content:center;gap:16px;flex-wrap:wrap}
+  .final .mail-note{margin-top:26px;font-size:13.5px;color:var(--dim)}
+  .final .mail-note a{color:var(--accent)}
+
+  /* ---------- FOOTER ---------- */
+  footer{border-top:1px solid var(--line);padding:44px 0;background:var(--bg-2)}
+  .foot-inner{display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap}
+  .foot-left{display:flex;align-items:center;gap:12px}
+  .foot-logo{display:flex;align-items:center;gap:9px;font-family:var(--font-display);font-weight:700;font-size:16px}
+  .foot-logo .mark{width:22px;height:22px;border-radius:7px;background:var(--accent);color:var(--accent-ink);display:grid;place-items:center;font-size:12px;font-weight:700}
+  .foot-copy{font-size:13px;color:var(--dim)}
+  .foot-links{display:flex;gap:8px}
+  .foot-links a{font-size:13px;color:var(--muted);padding:6px 10px;border-radius:6px;transition:color .2s ease}
+  .foot-links a:hover{color:var(--text)}
+
+  /* ---------- REVEAL ---------- */
+  .reveal{opacity:0;transform:translateY(26px);transition:opacity .8s cubic-bezier(.16,1,.3,1),transform .8s cubic-bezier(.16,1,.3,1)}
+  .reveal.visible{opacity:1;transform:translateY(0)}
+  .d1{transition-delay:.08s}.d2{transition-delay:.16s}.d3{transition-delay:.24s}.d4{transition-delay:.32s}
+
+  @media (prefers-reduced-motion:reduce){
+    *{animation:none!important;transition:none!important}
+    .reveal{opacity:1;transform:none}
+  }
+
+  /* ---------- RESPONSIVE ---------- */
+  @media(max-width:1020px){
+    .hero-inner{grid-template-columns:1fr;gap:56px}
+    .hero{padding:140px 0 70px}
+    .work-grid,.price-grid,.tst-grid{grid-template-columns:1fr 1fr}
+    .results-grid{grid-template-columns:1fr 1fr}
+    .result{border-bottom:1px solid var(--line)}
+    .result:nth-child(odd){border-right:1px solid var(--line)}
+    .result:nth-child(even){border-right:0}
+    .result:nth-child(3),.result:nth-child(4){border-bottom:0}
+    .svc-list{grid-template-columns:1fr}
+    .float-card{left:16px}
+  }
+  @media(max-width:720px){
+    .nav-links{display:none}
+    .nav-burger{display:block}
+    .nav-cta{display:none}
+    .hero h1{font-size:38px}
+    .compare-grid,.work-grid,.price-grid,.tst-grid{grid-template-columns:1fr}
+    section{padding:80px 0}
+    .results-grid{grid-template-columns:1fr}
+    .result{border-right:0!important;border-bottom:1px solid var(--line)}
+    .result:last-child{border-bottom:0}
+    .float-card{display:none}
+  }
+</style>
+</head>
+<body>
+
+<!-- ===== NAV ===== -->
+<nav class="nav" id="nav">
+  <div class="nav-inner">
+    <a href="#beranda" class="nav-logo" aria-label="Yoko Dev — beranda">
+      <span class="mark">Y</span>Yoko&nbsp;Dev
+    </a>
+    <div class="nav-links">
+      <a href="#layanan">Layanan</a>
+      <a href="#karya">Karya</a>
+      <a href="#testimoni">Testimoni</a>
+      <a href="#harga">Harga</a>
+      <a href="#faq">FAQ</a>
+    </div>
+    <a href="mailto:hello@yoko.dev?subject=Konsultasi%20Proyek" class="nav-cta">
+      <span class="pulse-dot"></span> Ayo Ngobrol
+    </a>
+    <button class="nav-burger" id="burger" aria-label="Buka menu" aria-expanded="false">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+    </button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#layanan">Layanan</a>
+    <a href="#karya">Karya</a>
+    <a href="#testimoni">Testimoni</a>
+    <a href="#harga">Harga</a>
+    <a href="#faq">FAQ</a>
+    <a href="mailto:hello@yoko.dev?subject=Konsultasi%20Proyek" style="color:var(--accent)">Ayo Ngobrol</a>
+  </div>
+</nav>
+
+<!-- ===== HERO ===== -->
+<header class="hero" id="beranda">
+  <div class="hero-grid-bg"></div>
+  <div class="hero-glow"></div>
+  <div class="container hero-inner">
+    <div>
+      <div class="hero-badge reveal">
+        <span class="pulse-dot"></span> Desainer produk &amp; pengembang — <b>siap membantu</b>
+      </div>
+      <h1 class="reveal d1">Website &amp; aplikasi <span class="accent">konversi tinggi</span>, dirancang untuk bisnis Anda.</h1>
+      <p class="hero-sub reveal d2">Saya membantu startup hingga perusahaan membangun landing page, web profil, dan aplikasi yang tidak hanya indah — tetapi terbukti mendatangkan leads dan penjualan.</p>
+      <div class="hero-actions reveal d3">
+        <a href="mailto:hello@yoko.dev?subject=Konsultasi%2015%20Menit" class="btn-primary">
+          Pesan Konsultasi 15 Menit
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+        <a href="#karya" class="btn-secondary">Lihat Karya</a>
+      </div>
+      <div class="hero-features reveal d4">
+        <div class="hero-feature"><span class="check"><svg viewBox="0 0 10 10"><path d="M2 5.2 4.2 7.4 8 2.8"/></svg></span> Pengiriman 3–5 hari kerja</div>
+        <div class="hero-feature"><span class="check"><svg viewBox="0 0 10 10"><path d="M2 5.2 4.2 7.4 8 2.8"/></svg></span> Metode teruji konversi</div>
+        <div class="hero-feature"><span class="check"><svg viewBox="0 0 10 10"><path d="M2 5.2 4.2 7.4 8 2.8"/></svg></span> Dikerjakan langsung senior</div>
+      </div>
+    </div>
+
+    <div class="hero-visual reveal d2">
+      <div class="browser">
+        <div class="browser-bar">
+          <span></span><span></span><span></span>
+          <div class="browser-url">yokodev.id / proyek-anda</div>
+        </div>
+        <div class="mini-landing">
+          <span class="mini-badge">Landing Page — Hasil Nyata</span>
+          <h3>Bisnis Anda layak tampil <span style="color:var(--accent)">sebaik kualitasnya.</span></h3>
+          <p>Desain yang menjawab kebutuhan pengunjung, alur yang jelas menuju pembelian, dan copy yang berbicara kepada calon pelanggan Anda.</p>
+          <span class="mini-cta">Mulai Sekarang →</span>
+          <div class="mini-stats">
+            <div class="mini-stat"><b>+32%</b><span>Leads</span></div>
+            <div class="mini-stat"><b>2×</b><span>Prospek</span></div>
+            <div class="mini-stat"><b>−80%</b><span>Beban Admin</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="float-card">
+        <div class="up">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M22 7 12 17l-5-5"/></svg>
+        </div>
+        <div><b>+32% Leads</b><span>dalam 14 hari peluncuran</span></div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ===== MARQUEE ===== -->
+<div class="marquee-wrap" aria-hidden="true">
+  <div class="marquee">
+    <span>Desain Web <i>✦</i></span><span>Landing Page <i>✦</i></span><span>Aplikasi Mobile <i>✦</i></span><span>Sistem Desain <i>✦</i></span><span>Strategi CRO <i>✦</i></span><span>Pengembangan Front-end <i>✦</i></span><span>Audit UX <i>✦</i></span><span>Web Profil Bisnis <i>✦</i></span>
+    <span>Desain Web <i>✦</i></span><span>Landing Page <i>✦</i></span><span>Aplikasi Mobile <i>✦</i></span><span>Sistem Desain <i>✦</i></span><span>Strategi CRO <i>✦</i></span><span>Pengembangan Front-end <i>✦</i></span><span>Audit UX <i>✦</i></span><span>Web Profil Bisnis <i>✦</i></span>
+  </div>
+</div>
+
+<!-- ===== HASIL NYATA ===== -->
+<div class="results">
+  <div class="container">
+    <div class="results-grid">
+      <div class="result reveal"><div class="val"><em>+32%</em></div><div class="lbl">Peningkatan leads klien kecantikan</div><div class="ctx">dalam 14 hari setelah peluncuran</div></div>
+      <div class="result reveal d1"><div class="val"><em>2×</em></div><div class="lbl">Lebih banyak prospek B2B</div><div class="ctx">dari pasar Eropa</div></div>
+      <div class="result reveal d2"><div class="val"><em>−80%</em></div><div class="lbl">Pengurangan beban kerja admin</div><div class="ctx">lewat sistem pemesanan otomatis</div></div>
+      <div class="result reveal d3"><div class="val"><em>3–5 hari</em></div><div class="lbl">Pengerjaan landing page</div><div class="ctx">setelah data lengkap</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== KENAPA BERBEDA ===== -->
+<section class="compare" id="keunggulan">
+  <div class="container">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Kenapa berbeda</span>
+      <h2>Masalah yang sering membuat proyek desain <span style="color:var(--accent)">gagal — saya selesaikan.</span></h2>
+    </div>
+    <div class="compare-grid">
+      <div class="compare-card them reveal">
+        <h4>Agensi / freelancer umumnya <span class="tag">Sering terjadi</span></h4>
+        <div class="compare-row"><span class="k">Proses &amp; workshop bertele-tele</span><span class="v">berbulan-bulan</span></div>
+        <div class="compare-row"><span class="k">Biaya membengkak</span><span class="v">Rp puluhan–ratusan juta</span></div>
+        <div class="compare-row"><span class="k">Dikerjakan junior / outsourcing</span><span class="v">kualitas tidak pasti</span></div>
+        <div class="compare-row"><span class="k">Fokus menggambar, lupa konversi</span><span class="v">cantik tapi sepi</span></div>
+        <div class="compare-row"><span class="k">Komunikasi lambat</span><span class="v">menunggu berhari-hari</span></div>
+      </div>
+      <div class="compare-card us reveal d2">
+        <h4>Bekerja dengan saya <span class="tag">Yang Anda dapat</span></h4>
+        <div class="compare-row"><span class="k">Langsung ke inti kebutuhan</span><span class="v">3–5 hari landing, 2–3 minggu web sistem</span></div>
+        <div class="compare-row"><span class="k">Biaya transparan per paket</span><span class="v">mulai dari audit sekali jalan</span></div>
+        <div class="compare-row"><span class="k">Dikerjakan langsung oleh saya</span><span class="v">desainer &amp; developer senior</span></div>
+        <div class="compare-row"><span class="k">Fokus konversi &amp; bisnis</span><span class="v">desain + strategi + copy</span></div>
+        <div class="compare-row"><span class="k">Responsif</span><span class="v">balasan cepat saat revisi</span></div>
+      </div>
+    </div>
+    <div class="compare-note reveal">
+      Saya paham bahwa <b>desain adalah investasi bisnis</b>, bukan sekadar kosmetik. Karena itu setiap keputusan desain selalu kembali ke satu pertanyaan: <b>apakah ini membantu Anda mendapatkan lebih banyak pelanggan?</b>
+    </div>
+  </div>
+</section>
+
+<!-- ===== LAYANAN ===== -->
+<section class="services" id="layanan">
+  <div class="container">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Layanan</span>
+      <h2>Bukan sekadar menggambar layar yang cantik — saya membangun <span style="color:var(--accent)">alat yang menghasilkan.</span></h2>
+      <p>Dari wireframe hingga kode siap produksi: desain sistem yang dapat diskalakan dan antarmuka yang disukai pengguna.</p>
+    </div>
+    <div class="svc-list">
+      <div class="svc reveal">
+        <span class="num">01</span>
+        <h3>Landing Page Konversi Tinggi</h3>
+        <p>Landing page yang dirancang dengan struktur funnel, copywriting yang menjual, dan CTA yang jelas — siap mengubah pengunjung menjadi leads.</p>
+        <div class="tags"><span>Funnel</span><span>Copywriting</span><span>CTA</span></div>
+      </div>
+      <div class="svc reveal d1">
+        <span class="num">02</span>
+        <h3>Desain UI/UX Produk</h3>
+        <p>Desain aplikasi web &amp; mobile dari wireframe hingga prototipe fidelitas tinggi — antarmuka yang disukai pengguna dan mudah digunakan.</p>
+        <div class="tags"><span>Wireframe</span><span>Prototipe</span><span>Design System</span></div>
+      </div>
+      <div class="svc reveal">
+        <span class="num">03</span>
+        <h3>Web Profil &amp; Company Profile</h3>
+        <p>Website profil bisnis modern yang membangun kepercayaan — kredibel di mata klien lokal maupun internasional.</p>
+        <div class="tags"><span>Responsif</span><span>SEO</span><span>Multi-bahasa</span></div>
+      </div>
+      <div class="svc reveal d1">
+        <span class="num">04</span>
+        <h3>Pengembangan Front-end</h3>
+        <p>Mengubah desain menjadi kode yang sempurna pixel. Performa, aksesibilitas, dan SEO dibangun sejak hari pertama.</p>
+        <div class="tags"><span>TypeScript</span><span>Tailwind CSS</span><span>React</span></div>
+      </div>
+      <div class="svc reveal">
+        <span class="num">05</span>
+        <h3>Audit UX &amp; Strategi CRO</h3>
+        <p>Analisis mendalam untuk menemukan penghambat konversi, lalu strategi perbaikan yang terukur — bukan tebakan.</p>
+        <div class="tags"><span>Riset Pengguna</span><span>Analitik</span><span>Pengujian A/B</span></div>
+      </div>
+      <div class="svc reveal d1">
+        <span class="num">06</span>
+        <h3>Sistem &amp; Mini App</h3>
+        <p>Membangun sistem pemesanan, dashboard, dan aplikasi internal yang mengotomatiskan kerja manual bisnis Anda.</p>
+        <div class="tags"><span>Next.js</span><span>Supabase</span><span>Payment Gateway</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== KARYA ===== -->
+<section class="work" id="karya">
+  <div class="container">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Karya terpilih</span>
+      <h2>Desain bukan sekadar estetika. <span style="color:var(--accent)">Inilah buktinya.</span></h2>
+    </div>
+    <div class="work-grid">
+      <article class="case reveal">
+        <div class="case-top c1"><span class="glyph">B</span></div>
+        <div class="case-body">
+          <div class="case-meta">Kampanye Merek Kecantikan <span class="dot"></span> UI/UX + No-code</div>
+          <h3>BeautyBrand ID</h3>
+          <p>Merapikan alur pengguna, memperjelas proposisi nilai, dan mengoptimalkan CTA untuk mengubah pengunjung menjadi pembelian chat yang terukur.</p>
+          <div class="case-metric"><b>+32% Leads</b><span>dalam 14 hari setelah peluncuran</span></div>
+        </div>
+      </article>
+      <article class="case reveal d1">
+        <div class="case-top c2"><span class="glyph">IM</span></div>
+        <div class="case-body">
+          <div class="case-meta">Rebrand Manufaktur B2B <span class="dot"></span> Full-stack Dev</div>
+          <h3>IndoManufacture</h3>
+          <p>Mengubah citra industri lama menjadi kehadiran digital yang modern dan tepercaya — sesuai standar klien global dari Eropa.</p>
+          <div class="case-metric"><b>2× Prospek</b><span>pertanyaan masuk dari pasar Eropa</span></div>
+        </div>
+      </article>
+      <article class="case reveal d2">
+        <div class="case-top c3"><span class="glyph">AS</span></div>
+        <div class="case-body">
+          <div class="case-meta">Sistem Pemesanan Tempat Olahraga <span class="dot"></span> Arsitek Sistem</div>
+          <h3>Arena Sport</h3>
+          <p>Mengganti obrolan WhatsApp yang kacau dengan sistem pemesanan digital: kalender real-time, pembayaran otomatis, dan dashboard admin.</p>
+          <div class="case-metric"><b>−80% Admin</b><span>pengurangan beban kerja</span></div>
+        </div>
+      </article>
+    </div>
+    <div class="work-more reveal">
+      <a href="mailto:hello@yoko.dev?subject=Lihat%20Portofolio%20Lengkap" class="btn-secondary">Minta portofolio lengkap →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== TESTIMONI ===== -->
+<section class="testimonials" id="testimoni">
+  <div class="container">
+    <div class="sec-head center reveal">
+      <span class="eyebrow">Testimoni</span>
+      <h2>Orang-orang senang dengan hasilnya.</h2>
+    </div>
+    <div class="tst-grid">
+      <div class="tst reveal">
+        <div class="stars">★★★★★</div>
+        <p>“Tingkat konversi di website kami meningkat signifikan. Tim sangat memahami kebutuhan bisnis, bukan hanya soal tampilan.”</p>
+        <div class="who">
+          <div class="avatar">S</div>
+          <div><b>Sarah Wijaya</b><span>Marketing Manager</span></div>
+        </div>
+      </div>
+      <div class="tst reveal d1">
+        <div class="stars">★★★★★</div>
+        <p>“Prosesnya cepat, hasilnya rapi, dan yang terpenting — desainnya benar-benar membantu penjualan kami. Sangat direkomendasikan.”</p>
+        <div class="who">
+          <div class="avatar alt">A</div>
+          <div><b>Andi Pratama</b><span>Founder, Brand Kecantikan</span></div>
+        </div>
+      </div>
+      <div class="tst reveal d2">
+        <div class="stars">★★★★★</div>
+        <p>“Komunikasi lancar, selalu responsif, dan paham konteks produk kami. Sistem yang dibangun berhasil memangkas kerja admin drastis.”</p>
+        <div class="who">
+          <div class="avatar">J</div>
+          <div><b>Jessica Lim</b><span>Product Owner</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== HARGA ===== -->
+<section class="pricing" id="harga">
+  <div class="container">
+    <div class="sec-head center reveal">
+      <span class="eyebrow">Harga</span>
+      <h2>Pilihan paket yang jelas, tanpa biaya tersembunyi.</h2>
+      <p>Mulai dari audit cepat hingga pendampingan bulanan — pilih yang sesuai kebutuhan Anda.</p>
+    </div>
+    <div class="price-grid">
+      <div class="plan reveal">
+        <div class="kind">Audit Sekali Jalan</div>
+        <h3>Audit UX/UI</h3>
+        <div class="dur">Satu kali · 5–7 hari</div>
+        <ul>
+          <li>Audit UX/UI menyeluruh</li>
+          <li>Tinjauan copywriting</li>
+          <li>Laporan analisis PDF</li>
+          <li>Daftar perbaikan nyata &amp; prioritas</li>
+        </ul>
+        <a class="btn" href="mailto:hello@yoko.dev?subject=Pesan%20Audit%20UX%2FUI">Pesan Audit</a>
+      </div>
+      <div class="plan hot reveal d1">
+        <span class="flag">Paling Diminati</span>
+        <div class="kind">Sprint Desain</div>
+        <h3>Landing Page</h3>
+        <div class="dur">Jalur cepat · 2 minggu</div>
+        <ul>
+          <li>Strategi funnel &amp; alur</li>
+          <li>Desain UI profesional</li>
+          <li>Tulisan landing page (copy)</li>
+          <li>Serah terima developer</li>
+        </ul>
+        <a class="btn" href="mailto:hello@yoko.dev?subject=Pesan%20Sprint%20Desain">Pesan Sprint</a>
+      </div>
+      <div class="plan reveal d2">
+        <div class="kind">Mitra Bulanan</div>
+        <h3>Retainer</h3>
+        <div class="dur">Berkelanjutan · per bulan</div>
+        <ul>
+          <li>Iterasi &amp; pengembangan terus-menerus</li>
+          <li>Ide &amp; uji pengujian A/B</li>
+          <li>Pemeliharaan sistem</li>
+          <li>Dukungan prioritas</li>
+        </ul>
+        <a class="btn" href="mailto:hello@yoko.dev?subject=Diskusi%20Mitra%20Bulanan">Ayo Ngobrol</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FAQ ===== -->
+<section class="faq-section" id="faq">
+  <div class="container">
+    <div class="sec-head reveal">
+      <span class="eyebrow">FAQ</span>
+      <h2>Pertanyaan yang sering diajukan.</h2>
+    </div>
+    <div class="faq-wrap">
+      <details class="faq reveal">
+        <summary>Berapa lama pengerjaan landing page? <span class="chev"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></summary>
+        <div class="ans">Untuk landing page biasanya <b>3–5 hari kerja</b> setelah data lengkap. Untuk website company profile atau mini system sekitar <b>2–3 minggu</b>.</div>
+      </details>
+      <details class="faq reveal">
+        <summary>Bisa pakai domain &amp; hosting sendiri? <span class="chev"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></summary>
+        <div class="ans">Bisa banget. Saya akan bantu <b>setup DNS dan instalasi</b> di hosting pilihan Anda. Kalau belum punya, saya bisa berikan rekomendasi provider lokal terbaik.</div>
+      </details>
+      <details class="faq reveal">
+        <summary>Data apa saja yang perlu saya siapkan? <span class="chev"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></summary>
+        <div class="ans">Cukup informasi dasar bisnis: <b>produk/layanan, target pelanggan, dan tujuan utama</b> (misal: lebih banyak chat WhatsApp atau penjualan online). Sisanya — struktur, copy, dan visual — saya bantu susunkan.</div>
+      </details>
+      <details class="faq reveal">
+        <summary>Bagaimana cara kerja sistem pembayaran / pemesanan? <span class="chev"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></summary>
+        <div class="ans">Saya integrasikan <b>gerbang pembayaran lokal</b> seperti Midtrans/Xendit, lengkap dengan konfirmasi otomatis dan dashboard admin — cocok untuk sistem pemesanan, deposit, atau pendaftaran.</div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CTA AKHIR ===== -->
+<section class="final" id="kontak">
+  <div class="final-glow"></div>
+  <div class="container">
+    <span class="eyebrow reveal">Mulai proyek Anda</span>
+    <h2 class="reveal d1">Mari kita bicarakan<br>proyek Anda.</h2>
+    <p class="reveal d2">Konsultasi 15 menit gratis — tanpa kewajiban. Ceritakan kebutuhan Anda, saya bantu arahkan solusinya.</p>
+    <div class="actions reveal d3">
+      <a href="mailto:hello@yoko.dev?subject=Konsultasi%2015%20Menit" class="btn-primary">
+        Pesan Konsultasi Gratis
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+      <a href="mailto:hello@yoko.dev?subject=Proyek%20Baru" class="btn-secondary">Kirim Email</a>
+    </div>
+    <div class="mail-note reveal d4">atau langsung ke <a href="mailto:hello@yoko.dev">hello@yoko.dev</a></div>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  <div class="container foot-inner">
+    <div class="foot-left">
+      <span class="foot-logo"><span class="mark">Y</span>Yoko&nbsp;Dev</span>
+      <span class="foot-copy">© <span id="year"></span> Yoko Dev — Desain &amp; kode untuk konversi.</span>
+    </div>
+    <div class="foot-links">
+      <a href="#layanan">Layanan</a>
+      <a href="#karya">Karya</a>
+      <a href="#harga">Harga</a>
+      <a href="mailto:hello@yoko.dev">Kontak</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  "use strict";
+
+  // Year
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // Nav state: hide on scroll down, show on scroll up; solid after scroll
+  var nav = document.getElementById('nav');
+  var lastY = window.scrollY;
+  var ticking = false;
+  function updateNav(){
+    var y = window.scrollY;
+    var threshold = window.innerWidth <= 640 ? 20 : 70;
+    if (y > lastY && y > threshold) nav.classList.add('hidden');
+    else nav.classList.remove('hidden');
+    if (y > 10) nav.classList.add('scrolled'); else nav.classList.remove('scrolled');
+    lastY = y;
+    ticking = false;
+  }
+  window.addEventListener('scroll', function(){
+    if(!ticking){ requestAnimationFrame(updateNav); ticking = true; }
+  }, {passive:true});
+  updateNav();
+
+  // Mobile menu
+  var burger = document.getElementById('burger');
+  var menu = document.getElementById('mobileMenu');
+  burger.addEventListener('click', function(){
+    var open = menu.classList.toggle('open');
+    burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
+  menu.querySelectorAll('a').forEach(function(a){
+    a.addEventListener('click', function(){ menu.classList.remove('open'); burger.setAttribute('aria-expanded','false'); });
+  });
+
+  // Reveal on scroll
+  var revealEls = document.querySelectorAll('.reveal');
+  if('IntersectionObserver' in window){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if(entry.isIntersecting){ entry.target.classList.add('visible'); io.unobserve(entry.target); }
+      });
+    }, {threshold:0.12, rootMargin:'0px 0px -40px 0px'});
+    revealEls.forEach(function(el){ io.observe(el); });
+  } else {
+    revealEls.forEach(function(el){ el.classList.add('visible'); });
+  }
+
+  // Smooth scroll offset for fixed nav
+  document.querySelectorAll('a[href^="#"]').forEach(function(a){
+    a.addEventListener('click', function(e){
+      var id = a.getAttribute('href');
+      if(id.length < 2) return;
+      var target = document.querySelector(id);
+      if(target){
+        e.preventDefault();
+        var top = target.getBoundingClientRect().top + window.scrollY - 74;
+        window.scrollTo({top:top, behavior:'smooth'});
+      }
+    });
+  });
+})();
+</script>
+</body>
+</html>
