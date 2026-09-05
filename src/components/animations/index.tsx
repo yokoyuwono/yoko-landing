@@ -72,9 +72,9 @@ export function ScrollReveal({
       {React.Children.map(children, (child, index) =>
         React.isValidElement(child)
           ? React.cloneElement(child, {
-              variants: childVariants,
+              variants: childVariants as Record<string, unknown>,
               custom: index,
-            })
+            } as Record<string, unknown>)
           : child
       )}
     </motion.div>
