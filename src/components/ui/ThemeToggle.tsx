@@ -21,8 +21,8 @@ export function ThemeToggle() {
       className={cn(
         'relative isolate h-9 w-16 rounded-full p-0.5 transition-colors',
         currentTheme === 'dark'
-          ? 'bg-brand-teal/20'
-          : 'bg-brand-teal/30'
+          ? 'bg-brand-yellow/20'
+          : 'bg-brand-yellow/30'
       )}
     >
       <motion.div
@@ -32,7 +32,7 @@ export function ThemeToggle() {
         initial={false}
         animate={{
           x: currentTheme === 'dark' ? 28 : 0,
-          backgroundColor: currentTheme === 'dark' ? '#04110D' : '#FFFFFF',
+          backgroundColor: currentTheme === 'dark' ? '#000000' : '#FFFFFF',
         }}
       >
         {currentTheme === 'dark' ? '🌙' : '☀️'}

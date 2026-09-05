@@ -18,13 +18,13 @@ const spaceGrotesk = Space_Grotesk({
 });
 
 export const metadata: Metadata = {
-  title: 'Yoko Dev — Website & aplikasi konversi tinggi',
-  description: 'Saya membantu startup hingga perusahaan membangun landing page, web profil, dan aplikasi yang tidak hanya indah — tetapi terbukti mendatangkan leads dan penjualan.',
-  keywords: ['landing page', 'web development', 'UI/UX', 'Next.js', 'Supabase', 'Jakarta'],
+  title: 'Yoko Dev — High-converting websites & apps',
+  description: 'I help startups and companies build landing pages, websites, and applications that are not only visually striking — but proven to drive leads and revenue.',
+  keywords: ['landing page', 'web development', 'UI/UX', 'Next.js', 'Supabase', 'Jakarta', 'conversion'],
   authors: [{ name: 'Yoko Dev' }],
   openGraph: {
-    title: 'Yoko Dev — Website & aplikasi konversi tinggi',
-    description: 'Landing page, web profil, dan aplikasi dengan desain yang menjawab kebutuhan pengunjung.',
+    title: 'Yoko Dev — High-converting websites & apps',
+    description: 'Landing pages, websites, and applications designed for conversion and revenue growth.',
     url: 'https://yoko-landing.vercel.app',
     siteName: 'Yoko Dev',
     locale: 'id_ID',
@@ -44,7 +44,7 @@ export const metadata: Metadata = {
 export const viewport: Viewport = {
   width: 'device-width',
   initialScale: 1,
-  themeColor: '#04110D',
+  themeColor: '#000000',
   colorScheme: 'dark',
 };
 

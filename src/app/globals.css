@@ -1,30 +1,34 @@
 @import "tailwindcss";
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap');
 
 @theme {
   --font-space-grotesk: "Space Grotesk", sans-serif;
   --font-inter: "Inter", sans-serif;
 
-  --color-brand-teal: #2DD4BF;
-  --color-brand-teal-ink: #04110F;
+  /* Squareblack-inspired: pure black + neon yellow accent */
+  --color-brand-yellow: #D9FF34;
+  --color-brand-yellow-hover: #E6FF00;
+  --color-brand-yellow-ink: #000000;
 
-  --color-surface: #0F0F12;
-  --color-surface-elevated: #141419;
-  --color-surface-elevated2: #1A1A20;
+  --color-surface: #000000;
+  --color-surface-elevated: #050505;
+  --color-surface-elevated2: #0A0A0A;
+  --color-surface-elevated3: #0F0F0F;
 
-  --color-line: #222228;
-  --color-line-muted: #2C2C34;
+  --color-line: #141414;
+  --color-line-muted: #222222;
 
-  --color-text: #ECECE8;
-  --color-text-muted: #8F8F98;
-  --color-text-dim: #5E5E68;
+  --color-text: #FFFFFF;
+  --color-text-muted: #A3A3A3;
+  --color-text-dim: #666666;
 
-  --radius-card: 20px;
-  --radius-btn: 10px;
+  --radius-card: 0px;
+  --radius-btn: 0px;
+  --radius-input: 0px;
 
-  --shadow-card: 0 4px 24px -4px rgba(0,0,0,0.4);
-  --shadow-card-hover: 0 12px 40px -8px rgba(0,0,0,0.5);
-  --shadow-glow: 0 0 40px -10px rgba(45, 212, 191, 0.35);
+  --shadow-card: 0 0 0 1px rgba(217, 255, 52, 0.1);
+  --shadow-card-hover: 0 0 30px -10px rgba(217, 255, 52, 0.2);
+  --shadow-glow: 0 0 50px -15px rgba(217, 255, 52, 0.3);
 }
 
 :root {
@@ -46,15 +50,16 @@ body {
   background-color: var(--color-surface);
   color: var(--color-text);
   font-family: var(--font-inter);
-  font-size: 16px;
-  line-height: 1.65;
+  font-size: 18px;
+  line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  font-weight: 400;
 }
 
 ::selection {
-  background-color: var(--color-brand-teal);
-  color: var(--color-brand-teal-ink);
+  background-color: var(--color-brand-yellow);
+  color: var(--color-brand-yellow-ink);
 }
 
 img, svg {
@@ -72,30 +77,15 @@ button {
 }
 
 @utility container-custom {
-  max-width: 1280px;
+  max-width: 1320px;
   margin-inline: auto;
-  padding-inline: 1.5rem;
+  padding-inline: 4rem;
 }
 
-@media (min-width: 768px) {
+@media (max-width: 768px) {
   @utility container-custom {
-    padding-inline: 3rem;
+    padding-inline: 2rem;
   }
-}
-
-@media (min-width: 1024px) {
-  @utility container-custom {
-    padding-inline: 5rem;
-  }
-}
-
-@utility scrollbar-hide {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-}
-
-@utility scrollbar-hide::-webkit-scrollbar {
-  display: none;
 }
 
 @utility text-balance {
@@ -123,6 +113,14 @@ button {
 @utility animate-slide-up-delayed-3 {
   animation: slideUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.3s forwards;
   opacity: 0;
+}
+
+@utility tracking-tight {
+  letter-spacing: -0.02em;
+}
+
+@utility tracking-tighter {
+  letter-spacing: -0.04em;
 }
 
 @keyframes fadeIn {
@@ -167,7 +165,7 @@ button {
 
 /* Focus visible */
 :focus-visible {
-  outline: 2px solid var(--color-brand-teal);
+  outline: 2px solid var(--color-brand-yellow);
   outline-offset: 2px;
 }
 
@@ -183,14 +181,13 @@ button {
 
 ::-webkit-scrollbar-thumb {
   background: var(--color-line-muted);
-  border-radius: 4px;
+  border-radius: 0px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
   background: var(--color-text-dim);
 }
 
-/* Lenis smooth scroll (if used) */
 html.lenis {
   height: auto;
 }

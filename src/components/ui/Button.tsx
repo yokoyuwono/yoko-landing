@@ -29,23 +29,23 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     ref
   ) => {
     const baseStyles =
-      'inline-flex items-center justify-center gap-2 font-medium transition-all duration-300 ease-spring focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-teal focus-visible:ring-offset-2 focus-visible:ring-offset-surface disabled:pointer-events-none disabled:opacity-50';
+      'inline-flex items-center justify-center gap-2 font-medium transition-all duration-200 ease-spring focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-yellow focus-visible:ring-offset-2 focus-visible:ring-offset-surface disabled:pointer-events-none disabled:opacity-50';
 
     const variantStyles = {
-      primary: 'bg-brand-teal text-brand-teal-ink hover:bg-brand-teal/90 hover:shadow-glow active:scale-[0.98]',
-      secondary: 'border border-line-muted text-text hover:border-brand-teal hover:text-brand-teal hover:bg-surface-elevated active:scale-[0.98]',
-      outline: 'border border-line-muted bg-transparent hover:bg-surface-elevated active:scale-[0.98]',
-      ghost: 'bg-transparent hover:bg-surface-elevated active:scale-[0.98]',
-      link: 'text-brand-teal underline-offset-4 hover:underline',
-      destructive: 'bg-red-600 text-white hover:bg-red-600/90 active:scale-[0.98]',
+      primary: 'bg-brand-yellow text-black hover:bg-brand-yellow-hover hover:shadow-glow active:scale-[0.98]',
+      secondary: 'border border-line-muted text-text hover:border-brand-yellow hover:text-brand-yellow hover:bg-surface-elevated',
+      outline: 'border border-line-muted bg-transparent hover:border-brand-yellow hover:bg-surface-elevated',
+      ghost: 'bg-transparent hover:bg-surface-elevated',
+      link: 'text-brand-yellow underline-offset-4 hover:underline',
+      destructive: 'bg-red-600 text-white hover:bg-red-600/90',
     };
 
     const sizeStyles = {
-      default: 'h-11 px-5 text-body-sm rounded-btn',
-      sm: 'h-9 px-4 text-caption rounded-btn',
-      lg: 'h-13 px-7 text-body rounded-btn',
-      xl: 'h-14 px-8 text-body-lg rounded-btn',
-      icon: 'h-11 w-11',
+      default: 'h-12 px-6 text-body-sm',
+      sm: 'h-10 px-4 text-caption',
+      lg: 'h-14 px-8 text-body',
+      xl: 'h-16 px-10 text-body-lg',
+      icon: 'h-12 w-12',
     };
 
     const Comp = asChild ? 'span' : 'button';

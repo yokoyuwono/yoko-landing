@@ -44,11 +44,11 @@ export function Counter({ value, label, context, className }: CounterProps) {
       transition={{ duration: 0.6, delay: 0.1 }}
     >
       {isString ? (
-        <span className="font-display text-display-lg font-semibold text-brand-teal tracking-tight block">
+        <span className="font-display text-display-lg font-semibold text-brand-yellow tracking-tight block">
           {value}
         </span>
       ) : (
-        <span ref={countRef} className="font-display text-display-lg font-semibold text-brand-teal tracking-tight block">
+        <span ref={countRef} className="font-display text-display-lg font-semibold text-brand-yellow tracking-tight block">
           0
         </span>
       )}

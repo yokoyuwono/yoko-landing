@@ -1,99 +1,104 @@
 'use client';
 
 import * as React from 'react';
-import { motion } from 'framer-motion';
+import { motion, useAnimation } from 'framer-motion';
 import { cn } from '@/lib/utils';
-import { ScrollReveal } from '@/components/animations';
+import { ScrollReveal, StaggerContainer, StaggerItem } from '@/components/animations';
 
 const faqs = [
   {
-    q: 'Berapa lama pengerjaan landing page?',
-    a: 'Untuk landing page biasanya <strong>3–5 hari kerja</strong> setelah data lengkap. Untuk website company profile atau mini system sekitar <strong>2–3 minggu</strong>.',
+    id: 1,
+    question: 'How much data do you need from me?',
+    answer: 'Just the basics: product/service, target audience, and primary goal (e.g., more WhatsApp chats or online sales). Everything else — structure, copy, and visuals — we handle together.',
   },
   {
-    q: 'Bisa pakai domain & hosting sendiri?',
-    a: 'Bisa banget. Saya akan bantu <strong>setup DNS dan instalasi</strong> di hosting pilihan Anda. Kalau belum punya, saya bisa berikan rekomendasi provider lokal terbaik.',
+    id: 2,
+    question: 'Can I pay via bank transfer?',
+    answer: 'Yes, bank transfer in USD or IDR. For international clients, Stripe is available with a 3% processing fee.',
   },
   {
-    q: 'Data apa saja yang perlu saya siapkan?',
-    a: 'Cukup informasi dasar bisnis: <strong>produk/layanan, target pelanggan, dan tujuan utama</strong> (misal: lebih banyak chat WhatsApp atau penjualan online). Sisanya — struktur, copy, dan visual — saya bantu susunkan.',
+    id: 3,
+    question: 'How fast can you deliver?',
+    answer: 'Standard delivery is 2-3 weeks. Express service (1 week) is available for an additional 50% fee. Rush jobs are possible with prior arrangement.',
   },
   {
-    q: 'Bagaimana cara kerja sistem pembayaran / pemesanan?',
-    a: 'Saya integrasikan <strong>gerbang pembayaran lokal</strong> seperti Midtrans/Xendit, lengkap dengan konfirmasi otomatis dan dashboard admin — cocok untuk sistem pemesanan, deposit, atau pendaftaran.',
+    id: 4,
+    question: 'Do you offer revisions?',
+    answer: 'Yes — 2 rounds of revisions are included. Additional revisions cost $200 per round. Major changes after approval are billed separately.',
   },
   {
-    q: 'Apakah ada revisi?',
-    a: 'Ya. Setiap paket termasuk revisi wajar (2–3 kali untuk paket audit/sprint, tak terbatas untuk retainer). Revisi mayor (ganti konsep total) di luar cakupan — akan didiskusikan dulu.',
-  },
-  {
-    q: 'Bagaimana cara komunikasi selama proyek?',
-    a: 'Via WhatsApp/Telegram untuk quick sync, dan Notion/Google Docs untuk dokumentasi. Saya update progress <strong>harian</strong> saat sprint, mingguan untuk retainer.',
+    id: 5,
+    question: 'What if I need more than a single project?',
+    answer: 'For ongoing work, I offer retainer partnerships at $3,000/month for 10 hours of design work — priority queueing and dedicated support.',
   },
 ];
 
 export function FAQ() {
+  const [openId, setOpenId] = React.useState<number | null>(1);
+
   return (
     <section
       id="faq"
-      className="py-22 md:py-28 lg:py-36 bg-surface"
+      className="py-24 md:py-32 lg:py-40 bg-surface-elevated"
       aria-labelledby="faq-title"
     >
       <div className="container-custom">
         <ScrollReveal variant="fade">
-          <div className="max-w-2xl mx-auto text-center mb-16 md:mb-20">
-            <span className="inline-block px-4 py-1.5 bg-brand-teal/10 text-brand-teal text-caption font-semibold rounded-full mb-6">
-              FAQ
-            </span>
-            <h2 id="faq-title" className="text-display-lg font-semibold tracking-tight text-balance">
-              Pertanyaan yang sering diajukan.
+          <div className="max-w-3xl mb-16">
+            <h2 id="faq-title" className="text-display-lg font-black tracking-tight text-balance">
+              Questions?
             </h2>
+            <p className="mt-6 text-body-lg text-text-muted max-w-xl">
+              Everything you need to know about working together.
+            </p>
           </div>
         </ScrollReveal>
 
-        <div className="max-w-3xl mx-auto">
-          {faqs.map((faq, i) => (
-            <ScrollReveal key={i} variant="slide-up" delay={i * 0.05}>
-              <details className="group border border-line rounded-card bg-surface-elevated overflow-hidden mb-4">
-                <summary className="flex items-center justify-between gap-4 p-6 cursor-pointer list-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-teal focus-visible:ring-offset-2 focus-visible:ring-offset-surface">
-                  <span className="text-body font-medium text-text pr-8">
-                    {faq.q}
-                  </span>
+        <StaggerContainer delay={0.2} stagger={0.1}>
+          <div className="border-t border-line">
+            {faqs.map((faq) => (
+              <StaggerItem key={faq.id} variant="slide-up">
+                <details
+                  className={cn(
+                    'group border-b border-line/30 transition-all duration-300',
+                    openId === faq.id ? 'open' : ''
+                  )}
+                  open={openId === faq.id}
+                  onToggle={(e: React.SyntheticEvent<HTMLDetailsElement>) => {
+                    setOpenId(e.currentTarget.open ? faq.id : null);
+                  }}
+                >
+                  <summary className="flex items-center justify-between gap-4 p-6 cursor-pointer list-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-yellow focus-visible:ring-offset-2 focus-visible:ring-offset-surface">
+                    <span className="text-body font-medium text-text pr-8">
+                      {faq.question}
+                    </span>
+                    <motion.div
+                      className="flex-shrink-0 h-5 w-5 text-brand-yellow transition-transform duration-300"
+                      animate={{ rotate: openId === faq.id ? 180 : 0 }}
+                    >
+                      <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2} className="h-5 w-5">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M12 5v14M5 12h14" />
+                      </svg>
+                    </motion.div>
+                  </summary>
                   <motion.div
-                    initial={{ rotate: 0 }}
-                    animate={{ rotate: 45 }}
-                    className="flex-shrink-0 h-5 w-5 text-brand-teal transition-transform duration-300"
+                    className="px-6 pb-6 overflow-hidden"
+                    initial={{ height: 0, opacity: 0 }}
+                    animate={{
+                      height: openId === faq.id ? 'auto' : 0,
+                      opacity: openId === faq.id ? 1 : 0,
+                    }}
+                    transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
                   >
-                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2} className="h-5 w-5">
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M12 5v14M5 12h14" />
-                    </svg>
+                    <p className="text-body text-text-muted leading-relaxed">
+                      {faq.answer}
+                    </p>
                   </motion.div>
-                </summary>
-                <div className="px-6 pb-6 pt-0">
-                  <motion.div
-                    initial={{ opacity: 0, height: 0 }}
-                    animate={{ opacity: 1, height: 'auto' }}
-                    exit={{ opacity: 0, height: 0 }}
-                    className="text-body text-text-muted leading-relaxed"
-                  >
-                    <div dangerouslySetInnerHTML={{ __html: faq.a }} />
-                  </motion.div>
-                </div>
-              </details>
-            </ScrollReveal>
-          ))}
-        </div>
-
-        <div className="mt-12 text-center">
-          <ScrollReveal variant="fade">
-            <p className="text-body-sm text-text-muted">
-              Pertanyaan lain?{' '}
-              <a href="mailto:hello@yoko.dev?subject=Pertanyaan" className="text-brand-teal hover:underline font-medium">
-                Langsung tanya via email
-              </a>
-            </p>
-          </ScrollReveal>
-        </div>
+                </details>
+              </StaggerItem>
+            ))}
+          </div>
+        </StaggerContainer>
       </div>
     </section>
   );

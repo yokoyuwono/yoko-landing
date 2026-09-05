@@ -27,11 +27,11 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
           ref={ref}
           id={inputId}
           className={cn(
-            'w-full h-11 px-4 bg-surface-elevated border rounded-btn',
+            'w-full h-12 px-4 bg-surface-elevated border rounded-[0px]',
             'text-text placeholder:text-text-dim',
             'border-line-muted',
-            'focus:border-brand-teal focus:outline-none focus:ring-2 focus:ring-brand-teal/20',
-            'transition-all duration-200 ease-spring',
+            'focus:border-brand-yellow focus:outline-none focus:ring-2 focus:ring-brand-yellow/20',
+            'transition-all duration-200',
             'disabled:bg-surface-elevated2 disabled:cursor-not-allowed',
             error && 'border-red-500 focus:border-red-500 focus:ring-red-500/20',
             className
@@ -81,12 +81,12 @@ export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
           ref={ref}
           id={inputId}
           className={cn(
-            'w-full px-4 py-3 bg-surface-elevated border rounded-card',
+            'w-full px-4 py-3 bg-surface-elevated border rounded-[0px]',
             'text-text placeholder:text-text-dim',
             'border-line-muted',
-            'focus:border-brand-teal focus:outline-none focus:ring-2 focus:ring-brand-teal/20',
-            'transition-all duration-200 ease-spring',
-            'resize-y min-h-[100px]',
+            'focus:border-brand-yellow focus:outline-none focus:ring-2 focus:ring-brand-yellow/20',
+            'transition-all duration-200',
+            'resize-y min-h-[120px]',
             'disabled:bg-surface-elevated2 disabled:cursor-not-allowed',
             error && 'border-red-500 focus:border-red-500 focus:ring-red-500/20',
             className
@@ -124,7 +124,7 @@ export const Label = React.forwardRef<HTMLLabelElement, LabelProps>(
       {...props}
     >
       {children}
-      {required && <span className="text-brand-teal ml-1" aria-hidden="true">*</span>}
+      {required && <span className="text-brand-yellow ml-1" aria-hidden="true">*</span>}
     </label>
   )
 );

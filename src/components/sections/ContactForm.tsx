@@ -6,7 +6,6 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { contactSchema, type ContactFormData } from '@/lib/validations';
 import { Button } from '@/components/ui/Button';
-import { Textarea } from '@/components/ui/Input';
 import { cn } from '@/lib/utils';
 import { toast } from 'sonner';
 
@@ -40,7 +39,7 @@ export function ContactForm() {
         throw new Error(result.error || 'Gagal mengirim pesan');
       }
 
-      toast.success('Pesan terkirim! Saya akan menghubungi Anda dalam 24 jam.');
+      toast.success('Pesan terkirim! Saya akan menghubungi Anda segeri.');
       setSubmitSuccess(true);
       reset();
     } catch (err: unknown) {
@@ -54,15 +53,15 @@ export function ContactForm() {
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="mx-auto max-w-xl space-y-6"
+      className="space-y-6"
       aria-label="Form kontak"
     >
-      <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
-        <div className="sm:col-span-2">
+      <div className="grid grid-cols-1 gap-6">
+        <div>
           <label
             htmlFor="name"
             className={cn(
-              'block text-sm font-medium text-text-muted mb-2',
+              'block text-body-sm font-medium text-text-dim mb-2',
               errors.name && 'text-red-400'
             )}
           >
@@ -71,9 +70,9 @@ export function ContactForm() {
           <input
             id="name"
             type="text"
-            placeholder="Nama lengkap Anda"
+            placeholder="Nama lengkap"
             className={cn(
-              'w-full rounded-lg border bg-surface-elevated border-line px-4 py-3 text-body text-text placeholder:text-text-dim transition-colors focus:border-brand-teal focus:outline-none focus:ring-2 focus:ring-brand-teal/20',
+              'w-full h-12 px-4 bg-surface-elevated border border-line text-text placeholder:text-text-dim transition-colors focus:border-brand-yellow focus:outline-none focus:ring-1 focus:ring-brand-yellow/20',
               errors.name && 'border-red-400 focus:border-red-400 focus:ring-red-400/20'
             )}
             {...register('name')}
@@ -81,17 +80,17 @@ export function ContactForm() {
             aria-describedby={errors.name ? 'name-error' : undefined}
           />
           {errors.name && (
-            <p id="name-error" className="mt-1 text-caption text-red-400">
+            <p id="name-error" className="mt-1.5 text-caption text-red-400">
               {errors.name.message}
             </p>
           )}
         </div>
 
-        <div className="sm:col-span-2">
+        <div>
           <label
             htmlFor="email"
             className={cn(
-              'block text-sm font-medium text-text-muted mb-2',
+              'block text-body-sm font-medium text-text-dim mb-2',
               errors.email && 'text-red-400'
             )}
           >
@@ -102,7 +101,7 @@ export function ContactForm() {
             type="email"
             placeholder="nama@email.com"
             className={cn(
-              'w-full rounded-lg border bg-surface-elevated border-line px-4 py-3 text-body text-text placeholder:text-text-dim transition-colors focus:border-brand-teal focus:outline-none focus:ring-2 focus:ring-brand-teal/20',
+              'w-full h-12 px-4 bg-surface-elevated border border-line text-text placeholder:text-text-dim transition-colors focus:border-brand-yellow focus:outline-none focus:ring-1 focus:ring-brand-yellow/20',
               errors.email && 'border-red-400 focus:border-red-400 focus:ring-red-400/20'
             )}
             {...register('email')}
@@ -110,30 +109,33 @@ export function ContactForm() {
             aria-describedby={errors.email ? 'email-error' : undefined}
           />
           {errors.email && (
-            <p id="email-error" className="mt-1 text-caption text-red-400">
+            <p id="email-error" className="mt-1.5 text-caption text-red-400">
               {errors.email.message}
             </p>
           )}
         </div>
 
-        <div className="sm:col-span-2">
-          <label htmlFor="subject" className="block text-sm font-medium text-text-muted mb-2">
+        <div>
+          <label
+            htmlFor="subject"
+            className="block text-body-sm font-medium text-text-dim mb-2"
+          >
             Subjek
           </label>
           <input
             id="subject"
             type="text"
             placeholder="Apa yang bisa saya bantu?"
-            className="w-full rounded-lg border bg-surface-elevated border-line px-4 py-3 text-body text-text placeholder:text-text-dim transition-colors focus:border-brand-teal focus:outline-none focus:ring-2 focus:ring-brand-teal/20"
+            className="w-full h-12 px-4 bg-surface-elevated border border-line text-text placeholder:text-text-dim transition-colors focus:border-brand-yellow focus:outline-none focus:ring-1 focus:ring-brand-yellow/20"
             {...register('subject')}
           />
         </div>
 
-        <div className="sm:col-span-2">
+        <div>
           <label
             htmlFor="message"
             className={cn(
-              'block text-sm font-medium text-text-muted mb-2',
+              'block text-body-sm font-medium text-text-dim mb-2',
               errors.message && 'text-red-400'
             )}
           >
@@ -144,7 +146,7 @@ export function ContactForm() {
             rows={5}
             placeholder="Ceritakan tentang proyek Anda..."
             className={cn(
-              'w-full rounded-lg border bg-surface-elevated border-line px-4 py-3 text-body text-text placeholder:text-text-dim transition-colors focus:border-brand-teal focus:outline-none focus:ring-2 focus:ring-brand-teal/20 resize-y',
+              'w-full px-4 py-3 bg-surface-elevated border border-line text-text placeholder:text-text-dim transition-colors focus:border-brand-yellow focus:outline-none focus:ring-1 focus:ring-brand-yellow/20 resize-y',
               errors.message && 'border-red-400 focus:border-red-400 focus:ring-red-400/20'
             )}
             {...register('message')}
@@ -152,7 +154,7 @@ export function ContactForm() {
             aria-describedby={errors.message ? 'message-error' : undefined}
           />
           {errors.message && (
-            <p id="message-error" className="mt-1 text-caption text-red-400">
+            <p id="message-error" className="mt-1.5 text-caption text-red-400">
               {errors.message.message}
             </p>
           )}
@@ -171,8 +173,8 @@ export function ContactForm() {
       </Button>
 
       {submitSuccess && (
-        <p className="text-center text-caption text-green-400 animate-fade-in">
-          ✓ Pesan Anda telah terkirim. Saya akan menghubungi Anda segeri.
+        <p className="text-center text-caption text-green-400">
+          ✓ Pesan Anda telah terkirim.
         </p>
       )}
     </form>

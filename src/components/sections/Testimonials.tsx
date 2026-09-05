@@ -5,92 +5,60 @@ import { motion } from 'framer-motion';
 import { cn } from '@/lib/utils';
 import { Card } from '@/components/ui/Card';
 import { ScrollReveal, StaggerContainer, StaggerItem } from '@/components/animations';
-import { getInitials, getAvatarColor } from '@/lib/utils';
 
 const testimonials = [
   {
-    name: 'Sarah Wijaya',
-    role: 'Marketing Manager',
-    company: 'Brand Kecantikan',
-    quote: '“Tingkat konversi di website kami meningkat signifikan. Tim sangat memahami kebutuhan bisnis, bukan hanya soal tampilan.”',
-    rating: 5,
+    id: 1,
+    quote: "The final project result was just fantastic. Conversion rates have skyrocketed.",
+    author: "Cory Miller",
+    role: "Kit.com",
+    flag: "🇺🇸",
   },
   {
-    name: 'Andi Pratama',
-    role: 'Founder',
-    company: 'Brand Kecantikan',
-    quote: '“Prosesnya cepat, hasilnya rapi, dan yang terpenting — desainnya benar-benar membantu penjualan kami. Sangat direkomendasikan.”',
-    rating: 5,
+    id: 2,
+    quote: "Their experience is unmatched. We're impressed with the quality of designs and brilliant insights. The team always answered within hours.",
+    author: "Chris Current",
+    role: "CEO of Agent First",
+    flag: "🇺🇸",
   },
   {
-    name: 'Jessica Lim',
-    role: 'Product Owner',
-    company: 'SaaS Startup',
-    quote: '“Komunikasi lancar, selalu responsif, dan paham konteks produk kami. Sistem yang dibangun berhasil memangkas kerja admin drastis.”',
-    rating: 5,
-  },
-  {
-    name: 'Budi Santoso',
-    role: 'CEO',
-    company: 'Manufaktur',
-    quote: '“Website lama kami ketinggalan zaman. Setelah rebrand, kami dapat 2x lebih banyak pertanyaan dari klien Eropa. Investasi yang sangat worth it.”',
-    rating: 5,
+    id: 3,
+    quote: "Squareblack became our key partner. We'll work with them forever.",
+    author: "Chris Lawrence",
+    role: "Swap.fm",
+    flag: "🇺🇸",
   },
 ];
 
 export function Testimonials() {
   return (
     <section
-      id="testimoni"
-      className="py-22 md:py-28 lg:py-36 bg-surface-elevated"
+      id="testimonial"
+      className="py-24 md:py-32 lg:py-40 bg-surface-elevated"
       aria-labelledby="testimonials-title"
     >
       <div className="container-custom">
         <ScrollReveal variant="fade">
-          <div className="max-w-2xl mx-auto text-center mb-16 md:mb-20">
-            <span className="inline-block px-4 py-1.5 bg-brand-teal/10 text-brand-teal text-caption font-semibold rounded-full mb-6">
-              Testimoni
-            </span>
-            <h2 id="testimonials-title" className="text-display-lg font-semibold tracking-tight text-balance">
-              Orang-orang senang dengan hasilnya.
+          <div className="max-w-3xl mb-16">
+            <h2 id="testimonials-title" className="text-display-lg font-black tracking-tight text-balance">
+              What clients say.
             </h2>
           </div>
         </ScrollReveal>
 
-        <StaggerContainer stagger={0.1}>
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {testimonials.map((testimonial, i) => (
-              <StaggerItem key={testimonial.name} variant="slide-up">
-                <Card variant="elevated" hover className="p-6 md:p-7 h-full flex flex-col">
-                  <div className="flex gap-1 mb-5" aria-label={`${testimonial.rating} dari 5 bintang`}>
-                    {Array.from({ length: 5 }, (_, idx) => (
-                      <motion.span
-                        key={idx}
-                        initial={{ scale: 0, rotate: -90 }}
-                        animate={{ scale: 1, rotate: 0 }}
-                        transition={{ delay: idx * 0.08, duration: 0.3 }}
-                        className="text-brand-teal"
-                      >
-                        ★
-                      </motion.span>
-                    ))}
-                  </div>
-                  <p className="text-body-sm text-text mb-6 flex-1 leading-relaxed">
-                    {testimonial.quote}
+        <StaggerContainer delay={0.2} stagger={0.15}>
+          <div className="grid lg:grid-cols-2 gap-8 md:gap-12">
+            {testimonials.map((testimonial) => (
+              <StaggerItem key={testimonial.id} variant="slide-up">
+                <Card variant="default" className="p-8 md:p-10 h-full">
+                  <p className="text-body-lg text-text mb-6 leading-relaxed">
+                    "{testimonial.quote}"
                   </p>
-                  <div className="flex items-center gap-4 pt-4 border-t border-line">
-                    <div
-                      className={cn(
-                        'flex h-12 w-12 items-center justify-center rounded-full font-display font-semibold text-brand-teal-ink',
-                        getAvatarColor(testimonial.name)
-                      )}
-                      aria-hidden="true"
-                    >
-                      {getInitials(testimonial.name)}
-                    </div>
+                  <div className="flex items-center gap-4 mt-auto">
+                    <span className="text-3xl">{testimonial.flag}</span>
                     <div>
-                      <p className="font-semibold text-text">{testimonial.name}</p>
-                      <p className="text-caption text-text-muted">{testimonial.role}{testimonial.company && `, ${testimonial.company}`}</p>
+                      <span className="font-bold text-text block">{testimonial.author}</span>
+                      <span className="text-body-sm text-text-dim">{testimonial.role}</span>
                     </div>
                   </div>
                 </Card>
