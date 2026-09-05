@@ -6,14 +6,14 @@ import { Reveal } from '@/components/sections/Reveal';
 /** Recurring dark-radial CTA band (Squareblack's .enhance) — margin-top 48px rhythm. */
 export function FinalCTA() {
   return (
-    <section className="container-custom" style={{ marginTop: 48 }}>
+    <section className="container-custom" style={{ marginTop: 80, marginBottom: 80 }}>
       <Reveal>
         <div
-          className="relative mx-auto flex w-full flex-col items-center overflow-hidden px-5 py-12 text-center md:px-8 md:py-16"
+          className="relative mx-auto flex w-full flex-col items-center overflow-hidden px-6 py-16 text-center md:px-16 md:py-24"
           style={{
             borderRadius: 'var(--radius-card)',
-            paddingTop: 46,
-            paddingBottom: 30,
+            paddingTop: 60,
+            paddingBottom: 40,
             background: 'radial-gradient(circle at 50% 50%, #2a2a2e 0%, #101010 78%)',
           }}
         >
@@ -27,12 +27,12 @@ export function FinalCTA() {
           />
           <span className="badge relative">Klien kami</span>
           <h2
-            className="text-headline relative mt-6 text-white"
+            className="text-headline relative mt-8 text-white"
             style={{ fontSize: 'clamp(30px, 4.6vw, 48px)', letterSpacing: '-1.4px', lineHeight: 1.06 }}
           >
             Dengan metode yang teruji, produk Anda bisa menutup lebih banyak klien, mendorong pembelian &amp; engagement.
           </h2>
-          <div className="relative mt-8 flex flex-col items-center gap-4 sm:flex-row">
+          <div className="relative mt-12 flex flex-col items-center gap-5 sm:flex-row sm:gap-6">
             <a
               href="mailto:hello@yoko.dev?subject=Konsultasi%2015%20Menit"
               className="inline-flex h-[58px] items-center justify-center gap-2 rounded-btn px-8 text-[16px] text-ink transition-transform duration-300 hover:scale-[1.03]"

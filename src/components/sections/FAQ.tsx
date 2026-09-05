@@ -29,7 +29,7 @@ const faqs = [
 export function FAQ() {
   const [open, setOpen] = React.useState(0);
   return (
-    <section id="faq" className="bg-paper pb-24 pt-2 md:pb-32" style={{ paddingTop: 64 }}>
+    <section id="faq" className="bg-paper pb-28 pt-2 md:pb-48" style={{ paddingTop: 96 }}>
       <div className="container-custom">
         <Reveal>
           <div className="ghost-head text-center">
@@ -38,7 +38,7 @@ export function FAQ() {
           </div>
         </Reveal>
 
-        <div className="mx-auto mt-16 max-w-[860px] md:mt-20">
+        <div className="mx-auto mt-24 max-w-[900px] md:mt-32">
           {faqs.map((f, i) => {
             const isOpen = open === i;
             return (
@@ -47,7 +47,7 @@ export function FAQ() {
                   <button
                     onClick={() => setOpen(isOpen ? -1 : i)}
                     aria-expanded={isOpen}
-                    className="flex w-full items-center justify-between gap-6 py-5 text-left md:py-6"
+                    className="flex w-full items-center justify-between gap-8 py-6 text-left md:py-8"
                   >
                     <span className="text-[17px] font-normal text-ink md:text-[19px]" style={{ fontWeight: 350, letterSpacing: '-0.3px' }}>
                       {f.q}
@@ -66,7 +66,7 @@ export function FAQ() {
                     style={{ gridTemplateRows: isOpen ? '1fr' : '0fr' }}
                   >
                     <div className="overflow-hidden">
-                      <p className="max-w-[700px] pb-6 text-[15px] leading-[1.6] text-mute" style={{ fontWeight: 350 }}>
+                      <p className="max-w-[720px] pb-8 text-[15px] leading-[1.7] md:pb-10 text-mute" style={{ fontWeight: 350 }}>
                         {f.a}
                       </p>
                     </div>

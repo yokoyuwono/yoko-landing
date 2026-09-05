@@ -81,7 +81,7 @@ function Art({ p }: { p: (typeof projects)[number] }) {
 
 export function Work() {
   return (
-    <section id="projects" className="bg-soft py-24 md:py-32">
+    <section id="projects" className="bg-soft py-28 md:py-48">
       <div className="container-custom">
         <Reveal>
           <div className="ghost-head text-center md:text-left">
@@ -92,25 +92,25 @@ export function Work() {
           </div>
         </Reveal>
 
-        <div className="mt-16 space-y-14 md:mt-24 md:space-y-24">
+        <div className="mt-24 space-y-20 md:mt-36 md:space-y-36">
           {projects.map((p, i) => (
             <Reveal key={p.idx} delay={60}>
-              <div className={`grid items-center gap-8 md:grid-cols-2 md:gap-16 ${i % 2 ? '' : ''}`}>
+              <div className={`grid items-center gap-10 md:grid-cols-2 md:gap-20 ${i % 2 ? '' : ''}`}>
                 <div className={`${i % 2 ? 'md:order-2' : ''}`}>
-                  <div className="overflow-hidden rounded-card border border-ashen/70 bg-paper p-2 shadow-[0_1px_2px_rgba(27,27,27,0.04)]" style={{ borderRadius: 24 }}>
+                  <div className="overflow-hidden rounded-card border border-ashen/70 bg-paper p-3 shadow-[0_1px_2px_rgba(27,27,27,0.04)]" style={{ borderRadius: 24 }}>
                     <Art p={p} />
                   </div>
                 </div>
                 <div className={i % 2 ? 'md:order-1' : ''}>
                   <p className="text-[12px] font-medium uppercase tracking-[0.16em] text-mute">{p.tag}</p>
-                  <h3 className="text-3xl mt-4 text-ink md:text-4xl">{p.title}</h3>
-                  <div className="mt-6 flex items-baseline gap-3 border-t border-ashen pt-6">
+                  <h3 className="text-3xl mt-6 text-ink md:mt-7 md:text-4xl">{p.title}</h3>
+                  <div className="mt-8 flex items-baseline gap-4 border-t border-ashen pt-8 md:mt-10 md:pt-9">
                     <span className="text-[34px] font-light text-ink md:text-[44px]" style={{ fontFamily: 'var(--font-display)', letterSpacing: '-1.6px' }}>
                       {p.metric}
                     </span>
                     <span className="text-[14px] text-mute">{p.metricLabel}</span>
                   </div>
-                  <a href="#pricing" className="group mt-7 inline-flex items-center gap-2 text-[15px] font-medium text-ink">
+                  <a href="#pricing" className="group mt-10 inline-flex items-center gap-2 text-[15px] font-medium text-ink">
                     Studi kasus
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="arrow-anim">
                       <path strokeLinecap="round" strokeLinejoin="round" d="M5 12h14M13 6l6 6-6 6" />

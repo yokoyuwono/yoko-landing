@@ -26,7 +26,7 @@ const items = [
 
 export function Testimonials() {
   return (
-    <section id="testimonials" className="bg-soft pb-24 pt-20 text-ink md:pb-32 md:pt-28">
+    <section id="testimonials" className="bg-soft pb-28 pt-24 text-ink md:pb-44 md:pt-32">
       <div className="container-custom">
         <Reveal>
           <div className="ghost-head mx-auto text-center">
@@ -35,17 +35,17 @@ export function Testimonials() {
           </div>
         </Reveal>
 
-        <div className="mt-20 grid gap-6 md:grid-cols-3 md:gap-8">
+        <div className="mt-24 grid gap-8 md:mt-32 md:grid-cols-3 md:gap-10">
           {items.map((t, i) => (
             <Reveal key={t.role} delay={i * 90}>
-              <div className="flex h-full flex-col rounded-card bg-paper p-8" style={{ boxShadow: '0 1px 2px rgba(27,27,27,0.06)' }}>
-                <span className="mb-5 inline-flex w-fit items-center rounded-full bg-soft px-3 py-1 text-[12px] font-medium text-mute">
+              <div className="flex h-full flex-col rounded-card bg-paper p-9 md:p-12" style={{ boxShadow: '0 1px 2px rgba(27,27,27,0.06)' }}>
+                <span className="mb-7 inline-flex w-fit items-center rounded-full bg-soft px-3 py-1 text-[12px] font-medium text-mute">
                   {t.tag}
                 </span>
-                <p className="text-[17px] font-light leading-[1.55] text-ink-2" style={{ fontWeight: 350 }}>
+                <p className="text-[17px] font-light leading-[1.65] text-ink-2" style={{ fontWeight: 350 }}>
                   &ldquo;{t.quote}&rdquo;
                 </p>
-                <div className="mt-7 border-t border-ashen/70 pt-5">
+                <div className="mt-9 border-t border-ashen/70 pt-7">
                   <p className="text-[15px] font-medium text-ink">{t.role}</p>
                 </div>
               </div>

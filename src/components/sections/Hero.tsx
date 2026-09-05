@@ -11,17 +11,17 @@ const features = [
 
 export function Hero() {
   return (
-    <section className="bg-ink pt-[140px] pb-16 md:pt-[180px] md:pb-24">
+    <section className="bg-ink pt-[170px] pb-24 md:pt-[210px] md:pb-36">
       <div className="hero-inner container-custom">
         <div className="flex flex-col items-center md:flex-row md:items-start md:gap-[90px]">
           {/* Left content */}
-          <div className="flex w-full flex-col items-center text-center md:max-w-[560px] md:items-start md:text-left">
+          <div className="flex w-full flex-col items-center text-center md:max-w-[600px] md:items-start md:text-left">
             <Reveal>
               <span className="badge">Desain produk & pengembangan — sejak 2019</span>
             </Reveal>
 
             <Reveal delay={80}>
-              <h1 className="text-display mt-7 text-white">
+              <h1 className="text-display mt-10 text-white md:mt-12">
                 Saya menaikkan konversi{' '}
                 <span className="text-white/90">website</span> &{' '}
                 <span className="text-white/90">aplikasi</span> Anda.{' '}
@@ -32,7 +32,7 @@ export function Hero() {
             <Reveal delay={160}>
               <a
                 href="mailto:hello@yoko.dev?subject=Konsultasi%2015%20Menit"
-                className="cta-btn mt-7 w-full max-w-[350px] md:max-w-[373px]"
+                className="cta-btn mt-10 w-full max-w-[380px] md:mt-12 md:max-w-[410px]"
                 style={{ height: 60 }}
               >
                 <span className="relative ml-3 mr-4 shrink-0">
@@ -49,7 +49,7 @@ export function Hero() {
             </Reveal>
 
             <Reveal delay={240}>
-              <div className="mt-9 hidden flex-col gap-4 md:flex">
+              <div className="mt-12 hidden flex-col gap-4 md:mt-16 md:flex">
                 {features.map((f) => (
                   <div key={f} className="flex items-center gap-3">
                     <span className="check-circle">
@@ -65,7 +65,7 @@ export function Hero() {
           </div>
 
           {/* Right showcase */}
-          <div className="mt-12 w-full max-w-[500px] md:mt-0 md:shrink-0">
+          <div className="mt-16 w-full max-w-[520px] md:mt-0 md:shrink-0">
             <Reveal delay={150}>
               <Showcase />
             </Reveal>
