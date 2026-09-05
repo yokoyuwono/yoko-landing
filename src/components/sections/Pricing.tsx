@@ -1,152 +1,124 @@
 'use client';
 
 import * as React from 'react';
-import { motion } from 'framer-motion';
-import Link from 'next/link';
-import { cn } from '@/lib/utils';
-import { Card } from '@/components/ui/Card';
-import { Button } from '@/components/ui/Button';
-import { ScrollReveal, StaggerContainer, StaggerItem } from '@/components/animations';
+import { Reveal } from '@/components/sections/Reveal';
 
-const comparison = [
+const plans = [
   {
-    label: 'Time + money you have to invest on average',
-    squareblack: '2-3 weeks, $10k/sprint',
-    other: '3-6 months, $50-200k',
+    name: 'Audit Express',
+    price: 'Mulai Rp 2,5 jt',
+    per: '1–3 hari · async / 1 jam video call',
+    desc: 'Audit cepat UI/UX & konversi produk Anda yang sudah berjalan, dengan rekomendasi prioritas.',
+    features: [
+      'Analisis UI, UX & copywriting',
+      'Rekomendasi optimasi konversi',
+      'Laporan + rekaman video',
+      'Sesi tanya jawab 30 menit',
+    ],
+    cta: 'Pesan audit',
+    highlight: false,
   },
   {
-    label: 'Quality of design',
-    squareblack: 'Senior designer only',
-    other: 'Often outsourced to juniors',
+    name: 'Design Sprint',
+    price: 'Mulai Rp 25 jt',
+    per: '2 minggu · 20–30 layar',
+    desc: 'Satu sprint cukup untuk landing page standar atau alur utama aplikasi mobile.',
+    features: [
+      'Dikerjakan langsung desainer senior',
+      'Desain modern sesuai kebutuhan Anda',
+      'Panduan konversi & copywriting',
+      '2 ronde revisi wajar',
+      'Coding landing page opsional',
+    ],
+    cta: 'Book sprint',
+    highlight: true,
   },
   {
-    label: 'Process',
-    squareblack: 'No workshop waste — just results',
-    other: 'Outdated UX workshops & processes',
+    name: 'Retainer',
+    price: 'Mulai Rp 15 jt/bln',
+    per: 'Kolaborasi bulanan',
+    desc: 'Kemitraan desain berkelanjutan — kuota jam bulanan dengan prioritas antrean.',
+    features: [
+      '10 jam kerja desain per bulan',
+      'Prioritas pengerjaan',
+      'Dukungan tim engineering Anda',
+      'Bisa pause kapan saja',
+    ],
+    cta: 'Mulai retainer',
+    highlight: false,
   },
 ];
 
 export function Pricing() {
   return (
-    <section
-      id="harga"
-      className="py-24 md:py-32 lg:py-40 bg-surface"
-      aria-labelledby="pricing-title"
-    >
+    <section id="pricing" className="bg-paper py-24 md:py-32">
       <div className="container-custom">
-        <ScrollReveal variant="fade">
-          <div className="max-w-3xl mb-16">
-            <h2 id="pricing-title" className="text-display-lg font-black tracking-tight text-balance">
-              Pricing. Simple, flexible plans.
-            </h2>
-            <p className="mt-6 text-body-lg text-text-muted max-w-xl">
-              No hidden fees. No lengthy contracts. Just clean design that converts.
-            </p>
+        <Reveal>
+          <div className="ghost-head text-center">
+            <div className="ghost text-ink">Harga</div>
+            <h2 className="front text-headline text-ink">Harga. Paket fleksibel.</h2>
           </div>
-        </ScrollReveal>
+        </Reveal>
 
-        <StaggerContainer delay={0.2} stagger={0.15}>
-          <div className="grid lg:grid-cols-2 gap-8 md:gap-12">
-            {/* Design Sprint */}
-            <StaggerItem variant="slide-up">
-              <Card variant="elevated" className="p-8 md:p-10 h-full">
-                <div className="mb-6">
-                  <span className="text-caption text-text-dim font-medium tracking-wider uppercase">
-                    Design Sprint
+        <div className="mt-20 grid gap-6 md:grid-cols-3 md:gap-5 lg:gap-6">
+          {plans.map((p, i) => (
+            <Reveal key={p.name} delay={i * 90}>
+              <div
+                className={`flex h-full flex-col rounded-card border p-8 md:p-9 ${
+                  p.highlight ? 'border-ink bg-ink text-white' : 'border-ashen bg-soft text-ink'
+                }`}
+              >
+                {p.highlight && (
+                  <span className="mb-5 inline-flex w-fit items-center rounded-full px-3 py-1 text-[11px] font-medium uppercase tracking-[0.12em] text-ink" style={{ background: 'var(--color-lime)' }}>
+                    Paling populer
                   </span>
-                  <h3 className="text-display-md font-black text-text mt-2">
-                    $10.000
-                  </h3>
-                  <p className="text-body-sm text-text-muted mt-4">
-                    One sprint (2 weeks of work) is enough for a standard landing page or the main flow of a mobile app (20-30 screens).
-                  </p>
-                </div>
-                <ul className="space-y-3 mb-8">
-                  <li className="flex items-center gap-2 text-body-sm text-text-dim">
-                    <span className="text-brand-yellow">✓</span>
-                    Senior designer only (Michal or Diana)
-                  </li>
-                  <li className="flex items-center gap-2 text-body-sm text-text-dim">
-                    <span className="text-brand-yellow">✓</span>
-                    Individually tailored, modern design
-                  </li>
-                  <li className="flex items-center gap-2 text-body-sm text-text-dim">
-                    <span className="text-brand-yellow">✓</span>
-                    Conversion & copywriting guidance included
-                  </li>
-                </ul>
-                <Button asChild size="lg" className="w-full">
-                  <Link href="mailto:hello@yoko.dev?subject=Design Sprint">
-                    Book a sprint
-                  </Link>
-                </Button>
-              </Card>
-            </StaggerItem>
+                )}
+                <h3 className="text-3xl">{p.name}</h3>
+                <p className={`mt-5 text-[26px] leading-none md:text-[30px] ${p.highlight ? 'text-lime' : 'text-ink'}`} style={{ fontFamily: 'var(--font-display)', fontWeight: 300, letterSpacing: '-0.8px' }}>
+                  {p.price}
+                </p>
+                <p className={`mt-2 text-[13px] ${p.highlight ? 'text-white/50' : 'text-mute'}`}>{p.per}</p>
 
-            {/* Express Audit */}
-            <StaggerItem variant="slide-up">
-              <Card variant="elevated" className="p-8 md:p-10 h-full">
-                <div className="mb-6">
-                  <span className="text-caption text-text-dim font-medium tracking-wider uppercase">
-                    Express Audit
-                  </span>
-                  <h3 className="text-display-md font-black text-text mt-2">
-                    From $500
-                  </h3>
-                  <p className="text-body-sm text-text-muted mt-4">
-                    1-hour design audit of your existing product with direct insights and actionable recommendations.
-                  </p>
-                </div>
-                <ul className="space-y-3 mb-8">
-                  <li className="flex items-center gap-2 text-body-sm text-text-dim">
-                    <span className="text-brand-yellow">✓</span>
-                    Performed by senior designer
-                  </li>
-                  <li className="flex items-center gap-2 text-body-sm text-text-dim">
-                    <span className="text-brand-yellow">✓</span>
-                    UI, UX & conversion analysis
-                  </li>
-                  <li className="flex items-center gap-2 text-body-sm text-text-dim">
-                    <span className="text-brand-yellow">✓</span>
-                    Video call or async review
-                  </li>
-                </ul>
-                <Button asChild variant="secondary" size="lg" className="w-full">
-                  <Link href="mailto:hello@yoko.dev?subject=Express Audit">
-                    Book an audit
-                  </Link>
-                </Button>
-              </Card>
-            </StaggerItem>
-          </div>
-        </StaggerContainer>
+                <p className={`mt-6 text-[15px] leading-relaxed ${p.highlight ? 'text-white/70' : 'text-mute'}`} style={{ fontWeight: 350 }}>
+                  {p.desc}
+                </p>
 
-        {/* Comparison table */}
-        <ScrollReveal variant="fade" delay={0.5}>
-          <div className="mt-24 border-t border-line pt-12">
-            <h3 className="text-display-md font-black mb-8">Why choose us?</h3>
-            <div className="overflow-x-auto">
-              <table className="w-full border-collapse">
-                <thead>
-                  <tr className="border-b border-line">
-                    <th className="text-left py-4 text-body-sm font-medium text-text-dim">Criteria</th>
-                    <th className="text-center py-4 text-body-sm font-medium text-brand-yellow">Yoko Dev</th>
-                    <th className="text-center py-4 text-body-sm font-medium text-text-dim">Other Agencies</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {comparison.map((row) => (
-                    <tr key={row.label} className="border-b border-line/30">
-                      <td className="py-4 text-body-sm text-text-muted">{row.label}</td>
-                      <td className="py-4 text-center text-body-sm text-brand-yellow font-medium">{row.squareblack}</td>
-                      <td className="py-4 text-center text-body-sm text-text-dim">{row.other}</td>
-                    </tr>
+                <ul className="mt-7 flex-1 space-y-2.5 border-t pt-6" style={{ borderColor: p.highlight ? 'rgba(255,255,255,0.14)' : 'var(--color-ashen)' }}>
+                  {p.features.map((f) => (
+                    <li key={f} className={`flex items-start gap-2.5 text-[14px] ${p.highlight ? 'text-white/80' : 'text-ink-2'}`} style={{ fontWeight: 350 }}>
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" className="mt-0.5 shrink-0" style={{ color: 'var(--color-lime)' }}>
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                      </svg>
+                      {f}
+                    </li>
                   ))}
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </ScrollReveal>
+                </ul>
+
+                <a
+                  href="mailto:hello@yoko.dev?subject=Paket"
+                  className={`mt-8 inline-flex h-[54px] items-center justify-center gap-2 rounded-btn text-[15px] transition-transform duration-300 hover:scale-[1.02] ${
+                    p.highlight ? 'text-ink' : 'text-paper'
+                  }`}
+                  style={{ background: p.highlight ? 'var(--color-lime)' : 'var(--color-ink)' }}
+                >
+                  {p.cta}
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="arrow-anim">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M5 12h14M13 6l6 6-6 6" />
+                  </svg>
+                </a>
+              </div>
+            </Reveal>
+          ))}
+        </div>
+
+        <Reveal delay={200}>
+          <p className="mt-12 text-center text-[14px] text-mute">
+            Ada pertanyaan soal paket?{' '}
+            <a href="mailto:hello@yoko.dev" className="text-ink underline underline-offset-4 hover:text-lime" style={{ textUnderlineOffset: '3px' }}>
+              hello@yoko.dev
+            </a>
+          </p>
+        </Reveal>
       </div>
     </section>
   );

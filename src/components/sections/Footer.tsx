@@ -1,42 +1,33 @@
 import * as React from 'react';
-import Link from 'next/link';
-import { cn } from '@/lib/utils';
 
 export function Footer() {
   const year = new Date().getFullYear();
-
   return (
-    <footer className="border-t border-line bg-surface py-12 md:py-16">
+    <footer className="mt-14 bg-ink pb-10 pt-[70px] text-center">
       <div className="container-custom">
-        <div className="flex flex-col md:flex-row items-center justify-between gap-6">
-          <p className="text-caption text-text-dim">
-            © {year} Yoko Dev. All rights reserved.
-          </p>
-          <div className="flex items-center gap-6">
-            <span className="text-caption text-text-dim">
-              Made in 🇮🇩
-            </span>
-            <div className="flex items-center gap-2 text-xs text-text-dim">
-              <span className="w-2 h-2 bg-brand-yellow rounded-full" />
-              Available for new projects
-            </div>
-          </div>
-        </div>
+        <p className="text-[13px] font-medium uppercase tracking-[0.18em] text-[#8D8D8D]">
+          Ada pertanyaan? Hubungi saya
+        </p>
+        <a
+          href="mailto:hello@yoko.dev"
+          className="mt-6 inline-block text-white transition-colors hover:text-lime"
+          style={{ fontFamily: 'var(--font-display)', fontWeight: 300, fontSize: 'clamp(30px, 6.4vw, 72px)', letterSpacing: '-2.6px', lineHeight: 1.05 }}
+        >
+          hello@yoko.dev
+        </a>
 
-        <div className="mt-8 border-t border-line pt-6 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <div className="flex gap-8 text-caption text-text-dim">
-            <Link href="#beranda" className="hover:text-brand-yellow transition-colors">Beranda</Link>
-            <Link href="#karya" className="hover:text-brand-yellow transition-colors">Karya</Link>
-            <Link href="#layanan" className="hover:text-brand-yellow transition-colors">Layanan</Link>
-            <Link href="#harga" className="hover:text-brand-yellow transition-colors">Harga</Link>
-            <Link href="#kontak" className="hover:text-brand-yellow transition-colors">Kontak</Link>
+        <div className="mx-auto mt-10 flex max-w-[1100px] flex-col items-center justify-between gap-5 border-t border-white/12 pt-8 md:flex-row">
+          <p className="text-[13px] text-white/40">© {year} Yoko Dev. Semua hak dilindungi.</p>
+          <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-[13px] text-white/40">
+            <a href="#testimonials" className="hover:text-white">Testimoni</a>
+            <a href="#why" className="hover:text-white">Mengapa Saya</a>
+            <a href="#projects" className="hover:text-white">Proyek</a>
+            <a href="#pricing" className="hover:text-white">Harga</a>
+            <a href="#faq" className="hover:text-white">FAQ</a>
           </div>
-          <a
-            href="mailto:hello@yoko.dev"
-            className="text-caption text-text-dim hover:text-brand-yellow transition-colors"
-          >
-            hello@yoko.dev
-          </a>
+          <p className="text-[13px] text-white/40">
+            Made in <span className="text-white/60">🇮🇩</span>
+          </p>
         </div>
       </div>
     </footer>

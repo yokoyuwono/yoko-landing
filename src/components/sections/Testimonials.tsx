@@ -1,71 +1,57 @@
 'use client';
 
 import * as React from 'react';
-import { motion } from 'framer-motion';
-import { cn } from '@/lib/utils';
-import { Card } from '@/components/ui/Card';
-import { ScrollReveal, StaggerContainer, StaggerItem } from '@/components/animations';
+import { Reveal } from '@/components/sections/Reveal';
 
-const testimonials = [
+const items = [
   {
-    id: 1,
-    quote: "The final project result was just fantastic. Conversion rates have skyrocketed.",
-    author: "Cory Miller",
-    role: "Kit.com",
-    flag: "🇺🇸",
+    quote:
+      'Hasil akhirnya luar biasa. Setelah peluncuran ulang, angka konversi di website kami melonjak dan tim selalu responsif setiap kami minta perubahan.',
+    role: 'CEO — Startup E-commerce',
+    tag: 'Redesign landing page',
   },
   {
-    id: 2,
-    quote: "Their experience is unmatched. We're impressed with the quality of designs and brilliant insights. The team always answered within hours.",
-    author: "Chris Current",
-    role: "CEO of Agent First",
-    flag: "🇺🇸",
+    quote:
+      'Pengalaman yang tidak bisa ditandingi. Kualitas desain dan wawasan konversinya tajam — semua dikerjakan tepat waktu, tanpa drama.',
+    role: 'Head of Marketing — Fintech',
+    tag: 'Sprint desain 2 minggu',
   },
   {
-    id: 3,
-    quote: "Squareblack became our key partner. We'll work with them forever.",
-    author: "Chris Lawrence",
-    role: "Swap.fm",
-    flag: "🇺🇸",
+    quote:
+      'Tim memahami bisnis kami, bukan sekadar menggambar. Hasilnya, pertanyaan masuk dari pasar internasional meningkat dua kali lipat.',
+    role: 'Founder — SaaS B2B',
+    tag: 'Website & aplikasi',
   },
 ];
 
 export function Testimonials() {
   return (
-    <section
-      id="testimonial"
-      className="py-24 md:py-32 lg:py-40 bg-surface-elevated"
-      aria-labelledby="testimonials-title"
-    >
+    <section id="testimonials" className="bg-soft pb-24 pt-20 text-ink md:pb-32 md:pt-28">
       <div className="container-custom">
-        <ScrollReveal variant="fade">
-          <div className="max-w-3xl mb-16">
-            <h2 id="testimonials-title" className="text-display-lg font-black tracking-tight text-balance">
-              What clients say.
-            </h2>
+        <Reveal>
+          <div className="ghost-head mx-auto text-center">
+            <div className="ghost text-ink">Testimoni</div>
+            <h2 className="front text-headline text-ink">Orang menyukai hasil kerja saya.</h2>
           </div>
-        </ScrollReveal>
+        </Reveal>
 
-        <StaggerContainer delay={0.2} stagger={0.15}>
-          <div className="grid lg:grid-cols-2 gap-8 md:gap-12">
-            {testimonials.map((testimonial) => (
-              <StaggerItem key={testimonial.id} variant="slide-up">
-                <Card variant="default" className="p-8 md:p-10 h-full">
-                  <p className="text-body-lg text-text mb-6 leading-relaxed">
-                    "{testimonial.quote}"
-                  </p>
-                  <div className="flex items-center gap-4 mt-auto">
-                    <span className="text-3xl">{testimonial.flag}</span>
-                    <div>
-                      <span className="font-bold text-text block">{testimonial.author}</span>
-                      <span className="text-body-sm text-text-dim">{testimonial.role}</span>
-                    </div>
-                  </div>
-                </Card>
-              </StaggerItem>
-            ))}
-          </div>
-        </StaggerContainer>
+        <div className="mt-20 grid gap-6 md:grid-cols-3 md:gap-8">
+          {items.map((t, i) => (
+            <Reveal key={t.role} delay={i * 90}>
+              <div className="flex h-full flex-col rounded-card bg-paper p-8" style={{ boxShadow: '0 1px 2px rgba(27,27,27,0.06)' }}>
+                <span className="mb-5 inline-flex w-fit items-center rounded-full bg-soft px-3 py-1 text-[12px] font-medium text-mute">
+                  {t.tag}
+                </span>
+                <p className="text-[17px] font-light leading-[1.55] text-ink-2" style={{ fontWeight: 350 }}>
+                  &ldquo;{t.quote}&rdquo;
+                </p>
+                <div className="mt-7 border-t border-ashen/70 pt-5">
+                  <p className="text-[15px] font-medium text-ink">{t.role}</p>
+                </div>
+              </div>
+            </Reveal>
+          ))}
+        </div>
       </div>
     </section>
   );

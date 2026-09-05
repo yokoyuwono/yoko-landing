@@ -1,77 +1,88 @@
 'use client';
 
 import * as React from 'react';
-import { motion } from 'framer-motion';
-import { cn } from '@/lib/utils';
-import { Card } from '@/components/ui/Card';
-import { Button } from '@/components/ui/Button';
-import { ScrollReveal, StaggerContainer, StaggerItem } from '@/components/animations';
+import { Reveal } from '@/components/sections/Reveal';
+
+const rows = [
+  {
+    label: 'Waktu & biaya rata-rata',
+    them: '2–3 minggu · mulai Rp 25 juta',
+    other: '3–6 bulan · Rp 300 juta+',
+  },
+  {
+    label: 'Siapa yang mengerjakan',
+    them: 'Langsung desainer senior',
+    other: 'Sering di-outsource ke junior',
+  },
+  {
+    label: 'Proses',
+    them: 'Tanpa workshop berlarut — fokus hasil',
+    other: 'Workshop & proses lawas yang mahal',
+  },
+  {
+    label: 'Metrik utama',
+    them: 'Konversi & revenue',
+    other: 'Cantik di mockup, lemah di lapangan',
+  },
+];
 
 const services = [
-  {
-    number: '01',
-    title: 'Landing Pages',
-    description: 'High-converting landing pages with proven funnel structure, copywriting, and clear CTAs.',
-    href: '#',
-  },
-  {
-    number: '02',
-    title: 'Web Design',
-    description: 'Websites that drive revenue through strategic UX, clean design, and optimized conversion paths.',
-    href: '#',
-  },
-  {
-    number: '03',
-    title: 'App Design',
-    description: 'Mobile apps and web applications designed for user retention and measurable business impact.',
-    href: '#',
-  },
+  { n: '01', title: 'Landing page konversi', desc: 'Struktur funnel, copywriting, dan CTA yang mengubah pengunjung menjadi leads — selesai dalam satu sprint.' },
+  { n: '02', title: 'Redesign website & aplikasi', desc: 'Audit UX menyeluruh lalu eksekusi ulang desain yang meningkatkan retensi dan pendapatan.' },
+  { n: '03', title: 'Design system & UI kit', desc: 'Fondasi visual yang konsisten dan scalable untuk produk Anda, siap dipakai tim engineering.' },
 ];
 
 export function Services() {
   return (
-    <section
-      id="layanan"
-      className="py-32 md:py-40 lg:py-48 bg-surface-elevated"
-      aria-labelledby="services-title"
-    >
+    <section id="why" className="bg-ink py-24 md:py-36">
       <div className="container-custom">
-        <ScrollReveal variant="fade">
-          <div className="max-w-3xl">
-            <h2 id="services-title" className="text-display-lg font-black tracking-tight text-balance">
-              I help you build products<br />
-              that <span className="text-brand-yellow">convert visitors into customers.</span>
+        {/* Ghost headline */}
+        <Reveal>
+          <div className="ghost-head mx-auto text-center">
+            <div className="ghost text-white">Layanan</div>
+            <h2 className="front text-headline text-white">
+              Saya menyelesaikan masalah yang{' '}
+              <span className="text-white/90">agensi lain</span>{' '}
+              <span className="text-lime">perjuangkan.</span>
             </h2>
-            <p className="mt-8 text-body-lg text-text-muted max-w-xl">
-              From strategy to execution — design that increases conversion rates, drives revenue, and builds long-term customer relationships.
-            </p>
           </div>
-        </ScrollReveal>
+        </Reveal>
 
-        <StaggerContainer delay={0.3} stagger={0.12}>
-          <div className="mt-20 grid sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-            {services.map((service) => (
-              <StaggerItem key={service.title} variant="slide-up">
-                <Card variant="elevated" className="p-8 md:p-10 h-full flex flex-col">
-                  <span className="text-body-sm font-medium text-brand-yellow tracking-wider uppercase mb-4">
-                    {service.number}
-                  </span>
-                  <h3 className="text-display-md font-bold tracking-tight text-text mb-4">
-                    {service.title}
-                  </h3>
-                  <p className="text-body-sm text-text-muted mb-6 flex-1">
-                    {service.description}
-                  </p>
-                  <Button variant="link" size="sm" asChild>
-                    <a href={service.href}>
-                      Learn more →
-                    </a>
-                  </Button>
-                </Card>
-              </StaggerItem>
+        {/* Comparison */}
+        <Reveal delay={120}>
+          <div className="mx-auto mt-20 max-w-[980px] overflow-hidden rounded-card border border-white/10 bg-white/[0.03]">
+            <div className="grid grid-cols-[1.2fr_1fr_1fr] border-b border-white/10 text-[13px] uppercase tracking-[0.08em] md:grid-cols-[1.4fr_1fr_1fr]">
+              <div className="px-5 py-4 text-white/50 md:px-8" />
+              <div className="px-4 py-4 font-medium text-lime md:px-8">Bekerja dengan saya</div>
+              <div className="px-4 py-4 text-white/50 md:px-8">Agensi umum</div>
+            </div>
+            {rows.map((r) => (
+              <div
+                key={r.label}
+                className="grid grid-cols-[1.2fr_1fr_1fr] items-center border-b border-white/[0.07] last:border-0 md:grid-cols-[1.4fr_1fr_1fr]"
+              >
+                <div className="px-5 py-4 text-[13px] text-white/60 md:px-8 md:text-[15px]">{r.label}</div>
+                <div className="px-4 py-4 text-[13px] text-white md:px-8 md:text-[15px]">{r.them}</div>
+                <div className="px-4 py-4 text-[12px] text-white/40 md:px-8 md:text-[14px]">{r.other}</div>
+              </div>
             ))}
           </div>
-        </StaggerContainer>
+        </Reveal>
+
+        {/* Service cards */}
+        <div className="mt-20 grid gap-5 md:grid-cols-3 md:gap-6">
+          {services.map((s, i) => (
+            <Reveal key={s.n} delay={i * 90}>
+              <div className="group h-full rounded-card border border-white/10 bg-white/[0.03] p-7 transition-colors duration-300 hover:border-lime/40 md:p-9">
+                <p className="text-[13px] font-medium tracking-[0.2em] text-lime">{s.n}</p>
+                <h3 className="text-3xl mt-4 text-white">{s.title}</h3>
+                <p className="mt-3 text-[15px] font-light leading-relaxed text-[#8D8D8D]" style={{ fontWeight: 350 }}>
+                  {s.desc}
+                </p>
+              </div>
+            </Reveal>
+          ))}
+        </div>
       </div>
     </section>
   );
